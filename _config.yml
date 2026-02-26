@@ -1,0 +1,12 @@
+book:
+  title: "E-Commerce Orders Analysis"
+  author: "Group 9"
+  repository:
+    url: https://github.com/Beluga610/E-Commerce-Orders-Analysis.git
+    path_to_book: ""
+    branch: main
+
+parse:
+  exclude_patterns:
+    - "data/*"
+    - "_build/*"

@@ -1,0 +1,5 @@
+format: jb-book
+root: 01_preprocessing.ipynb
+chapters:
+  - file: 02_supervised.ipynb
+  - file: 03_unsupervised.ipynb
