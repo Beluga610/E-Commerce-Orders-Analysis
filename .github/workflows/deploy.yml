@@ -3,7 +3,7 @@ name: deploy-book
 on:
   push:
     branches:
-      - main # 当你向 main 分支推送代码时触发
+      - main
 
 jobs:
   deploy-book:
@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install jupyter-book==0.15.1
-          pip install pandas numpy matplotlib seaborn scikit-learn
+          pip install pandas numpy matplotlib seaborn scikit-learn mlxtend
 
       - name: Build the book
         run: |
