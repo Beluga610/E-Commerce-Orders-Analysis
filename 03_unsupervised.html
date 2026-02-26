@@ -1,0 +1,2393 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Project (Assignment 3): Unsupervised Learning (E-Commerce Orders) &#8212; My Jupyter Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03_unsupervised';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Assignment 2: Supervised Learning Techniques for E-Commerce Orders" href="02_supervised.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="01_preprocessing.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="01_preprocessing.html">
+                    Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_supervised.html">Assignment 2: Supervised Learning Techniques for E-Commerce Orders</a></li>
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/03_unsupervised.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-your-cleaned-dataset-from-assignment-1">Load Your Cleaned Dataset from Assignment 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-unsupervised-learning">Task: Unsupervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing-for-unsupervised-learning-1-mark">1: Data Preprocessing for Unsupervised Learning [1 Mark]</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-all-orders-df-one-row-per-order">1.1 Create <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> (one row per order)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-orders-analysis-df">1.2 Create <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determine-the-optimal-number-of-clusters-3-marks">2: Determine the Optimal Number of Clusters [3 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-k-means-for-different-cluster-numbers">2.1 Run K-Means for Different Cluster Numbers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elbow-method-for-optimal-clusters">2.2 Elbow Method for Optimal Clusters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-analysis-and-visualization-3-marks">3: Cluster Analysis and Visualization [3 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-cluster-number-for-each-order">3.1 Identify the Cluster Number for Each Order</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-clusters">3.2 Visualize the Clusters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#market-basket-analysis-association-rule-mining-8-marks">4: Market Basket Analysis (Association Rule Mining) [8 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#context-what-is-market-basket-analysis">4.1 Context: What is Market Basket Analysis?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-transaction-data-1-mark">4.2 Prepare Transaction Data [1 Mark]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encode-transactions-and-apply-apriori-algorithm-2-marks">4.3 Encode Transactions and Apply Apriori Algorithm [2 Marks]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-and-display-top-10-rules-1-mark">4.4 Extract and Display Top 10 Rules [1 Mark]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-3-4-sentences-3-marks">4.5 Interpretation (3-4 sentences) [3 Marks]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#business-recommendations-2-3-bullet-points-1-mark">4.6 Business Recommendations (2-3 bullet points) [1 Mark]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-report-5-marks">Task: Report (5 Marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-up-report">1: Write-up / Report</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-the-report">2: Publish the Report</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#end-of-assignment-3">End of Assignment 3</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-assignment-3-unsupervised-learning-e-commerce-orders">
+<h1>Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)<a class="headerlink" href="#project-assignment-3-unsupervised-learning-e-commerce-orders" title="Permalink to this heading">#</a></h1>
+<p>This notebook is your working template for <strong>Assignment 3</strong>.</p>
+<p><strong>Note:</strong> This assessment comprises two parts: question-guided processing/modeling (Unsupervised learning) and free-form exploration.</p>
+<p><strong>Total Marks: 20</strong></p>
+<p>You will:</p>
+<ul class="simple">
+<li><p>Continue working with the expanded dataset from Assignment 1</p></li>
+<li><p>Perform <strong>clustering</strong> to identify similar order types</p></li>
+<li><p>Apply <strong>market basket analysis</strong> (association rule mining)</p></li>
+<li><p>Write up findings throughout the notebook</p></li>
+<li><p>Publish your analysis as a <a class="reference external" href="http://github.io">github.io</a> page</p></li>
+</ul>
+<p>Work <strong>top-to-bottom</strong>. Complete each task in order before moving on.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
+<p>Run the cell below to import the required Python packages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransactionEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.frequent_patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">apriori</span><span class="p">,</span> <span class="n">association_rules</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
+<span class="ne">---&gt; </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransactionEncoder</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.frequent_patterns</span><span class="w"> </span><span class="kn">import</span> <span class="n">apriori</span><span class="p">,</span> <span class="n">association_rules</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;mlxtend&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-your-cleaned-dataset-from-assignment-1">
+<h2>Load Your Cleaned Dataset from Assignment 1<a class="headerlink" href="#load-your-cleaned-dataset-from-assignment-1" title="Permalink to this heading">#</a></h2>
+<p>Load the cleaned and expanded dataset you created in Assignment 1 (and potentially modified in Assignment 2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: Load your cleaned dataset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ecommerce_orders_cleaned.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="task-unsupervised-learning">
+<h2>Task: Unsupervised Learning<a class="headerlink" href="#task-unsupervised-learning" title="Permalink to this heading">#</a></h2>
+<section id="objective">
+<h3>Objective<a class="headerlink" href="#objective" title="Permalink to this heading">#</a></h3>
+<p>In this task, you will work on unsupervised learning and support your analysis with visualization. Perform clustering to identify <strong>similar orders</strong> and generate <strong>order type recommendations</strong> based on their characteristics. An order type cluster represents a group of orders with similar purchasing patterns, value structures, and composition.</p>
+</section>
+<section id="data-preprocessing-for-unsupervised-learning-1-mark">
+<h3>1: Data Preprocessing for Unsupervised Learning [1 Mark]<a class="headerlink" href="#data-preprocessing-for-unsupervised-learning-1-mark" title="Permalink to this heading">#</a></h3>
+<p>Goal: Create DataFrames that contain one row per order with features suitable for both clustering and association mining.</p>
+<section id="create-all-orders-df-one-row-per-order">
+<h4>1.1 Create <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> (one row per order)<a class="headerlink" href="#create-all-orders-df-one-row-per-order" title="Permalink to this heading">#</a></h4>
+<p>Create a new DataFrame called <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> with the following columns:</p>
+<p>Identifier:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">order_id</span></code> — Unique identifier of the order</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basket_size</span></code> — Monetary value of the order (from <code class="docutils literal notranslate"><span class="pre">order_total_value</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basket_qty</span></code> — Number of items in the order (from <code class="docutils literal notranslate"><span class="pre">num_items</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freight_ratio</span></code> — Proportion of the order value that is freight (computed as <code class="docutils literal notranslate"><span class="pre">total_freight_value</span> <span class="pre">/</span> <span class="pre">order_total_value</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">product_diversity</span></code> — How varied the basket is in terms of product types (computed as <code class="docutils literal notranslate"><span class="pre">num_unique_products</span> <span class="pre">/</span> <span class="pre">num_items</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">top_product_category</span></code> — The dominant product category in the order</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">payment_type</span></code> — The payment method used</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">order_size_category</span></code> — The order size category (Small/Medium/Large)</p></li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> must have exactly one row per <code class="docutils literal notranslate"><span class="pre">order_id</span></code>.</p></li>
+<li><p>No missing values should remain in these columns after preprocessing (apply reasonable handling if needed).</p></li>
+<li><p>Handle potential division issues appropriately (e.g., orders with zero values).</p></li>
+<li><p>Display the first 10 rows of <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code>, its shape, and data types.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1.1 ANSWER: Create all_orders_df</span>
+
+<span class="c1"># Initialize and extract the base column</span>
+<span class="n">all_orders_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]</span>
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;basket_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;order_total_value&#39;</span><span class="p">]</span>
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;basket_qty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span>
+
+<span class="c1"># calculate proportional characteristics</span>
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;freight_ratio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;order_total_value&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_freight_value&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;order_total_value&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;product_diversity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;num_unique_products&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Extracting classification features</span>
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span>
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">]</span>
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;order_size_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;order_size_category&#39;</span><span class="p">]</span>
+
+<span class="c1"># Remove duplicates</span>
+<span class="n">all_orders_df</span> <span class="o">=</span> <span class="n">all_orders_df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;order_id&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># No missing values should remain</span>
+<span class="n">fill_values</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;basket_size&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;basket_qty&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;freight_ratio&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;product_diversity&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;top_product_category&#39;</span><span class="p">:</span> <span class="s1">&#39;Unknown&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;payment_type&#39;</span><span class="p">:</span> <span class="s1">&#39;Unknown&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;order_size_category&#39;</span><span class="p">:</span> <span class="s1">&#39;Unknown&#39;</span>
+<span class="p">}</span>
+<span class="n">all_orders_df</span> <span class="o">=</span> <span class="n">all_orders_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">fill_values</span><span class="p">)</span>
+
+<span class="c1"># Display first 10 rows</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== First 10 Rows ==========&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">all_orders_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">========== DataFrame Shape ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">all_orders_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">========== Data Types ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">all_orders_df</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== First 10 Rows ==========
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-7eb9c9c2-e5d2-4d34-9cf7-ff15cbdb2261" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>basket_size</th>
+      <th>basket_qty</th>
+      <th>freight_ratio</th>
+      <th>product_diversity</th>
+      <th>top_product_category</th>
+      <th>payment_type</th>
+      <th>order_size_category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>744.312535</td>
+      <td>1</td>
+      <td>0.092421</td>
+      <td>1.000000</td>
+      <td>construction_tools_construction</td>
+      <td>voucher</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-dbopoJ</td>
+      <td>1556.667902</td>
+      <td>1</td>
+      <td>0.009889</td>
+      <td>1.000000</td>
+      <td>health_beauty</td>
+      <td>credit_card</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-FSEOvM</td>
+      <td>62.060506</td>
+      <td>1</td>
+      <td>0.302145</td>
+      <td>1.000000</td>
+      <td>luggage_accessories</td>
+      <td>debit_card</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-bQcBUR</td>
+      <td>73.873470</td>
+      <td>1</td>
+      <td>0.117375</td>
+      <td>1.000000</td>
+      <td>computers_accessories</td>
+      <td>credit_card</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-MPxIXB</td>
+      <td>361.961537</td>
+      <td>3</td>
+      <td>0.095953</td>
+      <td>1.000000</td>
+      <td>pet_shop</td>
+      <td>voucher</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sdv-id-ySodbB</td>
+      <td>867.750230</td>
+      <td>7</td>
+      <td>0.204442</td>
+      <td>0.857143</td>
+      <td>sports_leisure</td>
+      <td>voucher</td>
+      <td>Large</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sdv-id-wdwBrk</td>
+      <td>55.965822</td>
+      <td>2</td>
+      <td>0.285101</td>
+      <td>0.500000</td>
+      <td>toys</td>
+      <td>points</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sdv-id-maBYtk</td>
+      <td>170.295452</td>
+      <td>3</td>
+      <td>0.089290</td>
+      <td>1.000000</td>
+      <td>computers_accessories</td>
+      <td>voucher</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sdv-id-oodUXj</td>
+      <td>83.065603</td>
+      <td>1</td>
+      <td>0.236471</td>
+      <td>1.000000</td>
+      <td>furniture_decor</td>
+      <td>voucher</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sdv-id-zroJIL</td>
+      <td>98.250248</td>
+      <td>1</td>
+      <td>0.369709</td>
+      <td>1.000000</td>
+      <td>fashion_bags_accessories</td>
+      <td>points</td>
+      <td>Small</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-7eb9c9c2-e5d2-4d34-9cf7-ff15cbdb2261')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-7eb9c9c2-e5d2-4d34-9cf7-ff15cbdb2261 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-7eb9c9c2-e5d2-4d34-9cf7-ff15cbdb2261');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== DataFrame Shape ==========
+(46287, 8)
+
+========== Data Types ==========
+order_id                 object
+basket_size             float64
+basket_qty                int64
+freight_ratio           float64
+product_diversity       float64
+top_product_category     object
+payment_type             object
+order_size_category      object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-orders-analysis-df">
+<h4>1.2 Create <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code><a class="headerlink" href="#create-orders-analysis-df" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> from sklearn to split the data in <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code>.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">test_size=0.3</span></code> (keep 30% of data for analysis) and <code class="docutils literal notranslate"><span class="pre">random_state=37</span></code> for reproducibility.</p></li>
+<li><p>Assign the <strong>test set</strong> to the variable <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code>.</p></li>
+</ul>
+<p>Display the shape of <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code> and show its first 10 rows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1.2 ANSWER: Create orders_analysis_df using train_test_split</span>
+
+<span class="n">orders_train_df</span><span class="p">,</span> <span class="n">orders_analysis_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">all_orders_df</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">37</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== DataFrame Shape ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">orders_analysis_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">========== First 10 Rows ==========&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">orders_analysis_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== DataFrame Shape ==========
+(13887, 8)
+
+========== First 10 Rows ==========
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-2d203a08-e527-4ddd-b12f-c715152c059d" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>basket_size</th>
+      <th>basket_qty</th>
+      <th>freight_ratio</th>
+      <th>product_diversity</th>
+      <th>top_product_category</th>
+      <th>payment_type</th>
+      <th>order_size_category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1882</th>
+      <td>sdv-id-ISddRn</td>
+      <td>132.611695</td>
+      <td>1</td>
+      <td>0.126285</td>
+      <td>1.000000</td>
+      <td>christmas_supplies</td>
+      <td>voucher</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>40995</th>
+      <td>sdv-id-GmlErp</td>
+      <td>730.510053</td>
+      <td>6</td>
+      <td>0.075288</td>
+      <td>0.666667</td>
+      <td>furniture_decor</td>
+      <td>credit_card</td>
+      <td>Large</td>
+    </tr>
+    <tr>
+      <th>40104</th>
+      <td>sdv-id-BWpket</td>
+      <td>632.486142</td>
+      <td>1</td>
+      <td>0.051262</td>
+      <td>1.000000</td>
+      <td>bed_bath_table</td>
+      <td>credit_card</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>25808</th>
+      <td>sdv-id-krmbPT</td>
+      <td>47.102393</td>
+      <td>1</td>
+      <td>0.248932</td>
+      <td>1.000000</td>
+      <td>telephony</td>
+      <td>credit_card</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>23294</th>
+      <td>sdv-id-vhfMmG</td>
+      <td>133.285008</td>
+      <td>1</td>
+      <td>0.135860</td>
+      <td>1.000000</td>
+      <td>health_beauty</td>
+      <td>debit_card</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>7160</th>
+      <td>sdv-id-kcTYfM</td>
+      <td>403.696187</td>
+      <td>2</td>
+      <td>0.079065</td>
+      <td>0.500000</td>
+      <td>auto</td>
+      <td>credit_card</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>7180</th>
+      <td>sdv-id-tFFFCg</td>
+      <td>211.465148</td>
+      <td>2</td>
+      <td>0.162263</td>
+      <td>1.000000</td>
+      <td>furniture_decor</td>
+      <td>voucher</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>20801</th>
+      <td>sdv-id-KgDKAA</td>
+      <td>57.520738</td>
+      <td>1</td>
+      <td>0.228879</td>
+      <td>1.000000</td>
+      <td>bed_bath_table</td>
+      <td>credit_card</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>19879</th>
+      <td>sdv-id-cfCjEB</td>
+      <td>576.212699</td>
+      <td>3</td>
+      <td>0.056350</td>
+      <td>0.666667</td>
+      <td>bed_bath_table</td>
+      <td>credit_card</td>
+      <td>Medium</td>
+    </tr>
+    <tr>
+      <th>39874</th>
+      <td>sdv-id-uxRZME</td>
+      <td>141.772602</td>
+      <td>2</td>
+      <td>0.200719</td>
+      <td>1.000000</td>
+      <td>fashion_bags_accessories</td>
+      <td>credit_card</td>
+      <td>Small</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2d203a08-e527-4ddd-b12f-c715152c059d')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-2d203a08-e527-4ddd-b12f-c715152c059d button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-2d203a08-e527-4ddd-b12f-c715152c059d');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+<section id="determine-the-optimal-number-of-clusters-3-marks">
+<h3>2: Determine the Optimal Number of Clusters [3 Marks]<a class="headerlink" href="#determine-the-optimal-number-of-clusters-3-marks" title="Permalink to this heading">#</a></h3>
+<section id="run-k-means-for-different-cluster-numbers">
+<h4>2.1 Run K-Means for Different Cluster Numbers<a class="headerlink" href="#run-k-means-for-different-cluster-numbers" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Use <strong>only the four numerical features</strong> from <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code> (<code class="docutils literal notranslate"><span class="pre">basket_size</span></code>, <code class="docutils literal notranslate"><span class="pre">basket_qty</span></code>, <code class="docutils literal notranslate"><span class="pre">freight_ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">product_diversity</span></code>) for clustering.</p></li>
+<li><p>Run K-means clustering from <strong>k = 3 to 9</strong> clusters.</p></li>
+<li><p>Important: First scale the numerical features using <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> before fitting K-means.</p></li>
+<li><p>In each run, calculate the <strong>inertia</strong> of the cluster and store the values for each k (3 to 9) in a list or table.</p></li>
+</ul>
+<p>Inertia is a measure of how tightly packed the clusters are. It is the sum of squared distances between each point and its assigned cluster center (centroid). Lower inertia indicates that the clusters are more compact, and the points are closer to their centroids, suggesting better clustering.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.1 ANSWER: Run K-means for k=3 to 9 and calculate inertia</span>
+
+<span class="c1"># Extract four numerical features</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;basket_size&#39;</span><span class="p">,</span> <span class="s1">&#39;basket_qty&#39;</span><span class="p">,</span> <span class="s1">&#39;freight_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;product_diversity&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">orders_analysis_df</span><span class="p">[</span><span class="n">num_features</span><span class="p">]</span>
+
+<span class="c1"># Standardize</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Run K-Means (from 3 to 9) and record the Inertia.</span>
+<span class="n">inertia_values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">k_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">k_range</span><span class="p">:</span>
+    <span class="c1"># Instantiate the K-Means model</span>
+    <span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Fit the standardized data</span>
+    <span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+    <span class="c1"># Extract and save the inertia attribute</span>
+    <span class="n">inertia_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
+
+
+<span class="n">inertia_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Number of Clusters (k)&#39;</span><span class="p">:</span> <span class="n">k_range</span><span class="p">,</span>
+    <span class="s1">&#39;Inertia&#39;</span><span class="p">:</span> <span class="n">inertia_values</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== Inertia for Different k ==========&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">inertia_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== Inertia for Different k ==========
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-6ec0c8a2-9797-4501-a327-73bb9fb4d1db" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Number of Clusters (k)</th>
+      <th>Inertia</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>28884.287460</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>21464.490872</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>17303.164622</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6</td>
+      <td>15014.005307</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>13530.944387</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>8</td>
+      <td>11762.816173</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>9</td>
+      <td>10585.957147</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-6ec0c8a2-9797-4501-a327-73bb9fb4d1db')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-6ec0c8a2-9797-4501-a327-73bb9fb4d1db button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-6ec0c8a2-9797-4501-a327-73bb9fb4d1db');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+  <div id="id_fe2fa9ec-6dfe-4f91-9cce-8d5f0967158f">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('inertia_table')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_fe2fa9ec-6dfe-4f91-9cce-8d5f0967158f button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('inertia_table');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+<section id="elbow-method-for-optimal-clusters">
+<h4>2.2 Elbow Method for Optimal Clusters<a class="headerlink" href="#elbow-method-for-optimal-clusters" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Plot the <strong>inertia</strong> (y-axis) against the <strong>number of clusters</strong> (x-axis) to identify the optimal number of clusters using the <strong>Elbow method</strong>.</p></li>
+</ul>
+<p>The Elbow Method helps in selecting the number of clusters by identifying where the inertia starts to decrease more slowly.</p>
+<ul class="simple">
+<li><p>Based on the Elbow plot, <strong>choose the optimal number of clusters</strong> and state your choice clearly.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.2 ANSWER: Create Elbow plot</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Drawing a line chart</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">inertia_table</span><span class="p">[</span><span class="s1">&#39;Number of Clusters (k)&#39;</span><span class="p">],</span>
+    <span class="n">inertia_table</span><span class="p">[</span><span class="s1">&#39;Inertia&#39;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Add chart title and axis labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Elbow Method For Optimal k&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Clusters (k)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Inertia&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">k_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/aa690d4b2652a070c068d371666484341c26dec639eae9ff72781764a2a684ce.png" src="_images/aa690d4b2652a070c068d371666484341c26dec639eae9ff72781764a2a684ce.png" />
+</div>
+</div>
+<p><strong>Statement of my choice</strong></p>
+<p>I choose 6 as the optimal number of clusters. From the elbow plot, inertia decreases sharply between k=3 and k=6. After k=6, the curve flattens, and inertia reduction becomes small and linear. This shows k=6 is the elbow point: adding more clusters beyond 6 does not significantly improve data partitioning.</p>
+</section>
+</section>
+<section id="cluster-analysis-and-visualization-3-marks">
+<h3>3: Cluster Analysis and Visualization [3 Marks]<a class="headerlink" href="#cluster-analysis-and-visualization-3-marks" title="Permalink to this heading">#</a></h3>
+<section id="identify-the-cluster-number-for-each-order">
+<h4>3.1 Identify the Cluster Number for Each Order<a class="headerlink" href="#identify-the-cluster-number-for-each-order" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Create a K-means model using the four numerical features from <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> and the optimal number of clusters identified in Task 2.</p></li>
+<li><p>Fit the model on the scaled numerical features.</p></li>
+<li><p>Use the fitted model to assign a cluster number to each order and add a new column called <code class="docutils literal notranslate"><span class="pre">cluster</span></code> to <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code>.</p></li>
+<li><p>Show the first 10 rows of <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> to verify cluster assignment.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3.1 ANSWER: Fit K-means with optimal k and assign clusters</span>
+
+<span class="n">optimal_k</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c1"># Extract numerical features from the full dataset</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;basket_size&#39;</span><span class="p">,</span> <span class="s1">&#39;basket_qty&#39;</span><span class="p">,</span> <span class="s1">&#39;freight_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;product_diversity&#39;</span><span class="p">]</span>
+<span class="n">X_all</span> <span class="o">=</span> <span class="n">all_orders_df</span><span class="p">[</span><span class="n">num_features</span><span class="p">]</span>
+
+<span class="c1"># Standardize the entire dataset</span>
+<span class="n">scaler_all</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_all_scaled</span> <span class="o">=</span> <span class="n">scaler_all</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_all</span><span class="p">)</span>
+
+<span class="c1"># Initialize and train the final K-Means model</span>
+<span class="n">kmeans_final</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">optimal_k</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">37</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">kmeans_final</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_all_scaled</span><span class="p">)</span>
+
+<span class="c1"># Add the cluster labels to the original dataframe as a new column</span>
+<span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmeans_final</span><span class="o">.</span><span class="n">labels_</span>
+
+<span class="c1"># Display first 10 rows</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;========== First 10 Rows with Cluster Assignment (k=</span><span class="si">{</span><span class="n">optimal_k</span><span class="si">}</span><span class="s2">) ==========&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">all_orders_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== First 10 Rows with Cluster Assignment (k=6) ==========
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-60d24024-2ca0-43c4-b3df-b7ac8ed7489a" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>basket_size</th>
+      <th>basket_qty</th>
+      <th>freight_ratio</th>
+      <th>product_diversity</th>
+      <th>top_product_category</th>
+      <th>payment_type</th>
+      <th>order_size_category</th>
+      <th>cluster</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>744.312535</td>
+      <td>1</td>
+      <td>0.092421</td>
+      <td>1.000000</td>
+      <td>construction_tools_construction</td>
+      <td>voucher</td>
+      <td>Small</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-dbopoJ</td>
+      <td>1556.667902</td>
+      <td>1</td>
+      <td>0.009889</td>
+      <td>1.000000</td>
+      <td>health_beauty</td>
+      <td>credit_card</td>
+      <td>Small</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-FSEOvM</td>
+      <td>62.060506</td>
+      <td>1</td>
+      <td>0.302145</td>
+      <td>1.000000</td>
+      <td>luggage_accessories</td>
+      <td>debit_card</td>
+      <td>Small</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-bQcBUR</td>
+      <td>73.873470</td>
+      <td>1</td>
+      <td>0.117375</td>
+      <td>1.000000</td>
+      <td>computers_accessories</td>
+      <td>credit_card</td>
+      <td>Small</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-MPxIXB</td>
+      <td>361.961537</td>
+      <td>3</td>
+      <td>0.095953</td>
+      <td>1.000000</td>
+      <td>pet_shop</td>
+      <td>voucher</td>
+      <td>Medium</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sdv-id-ySodbB</td>
+      <td>867.750230</td>
+      <td>7</td>
+      <td>0.204442</td>
+      <td>0.857143</td>
+      <td>sports_leisure</td>
+      <td>voucher</td>
+      <td>Large</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>sdv-id-wdwBrk</td>
+      <td>55.965822</td>
+      <td>2</td>
+      <td>0.285101</td>
+      <td>0.500000</td>
+      <td>toys</td>
+      <td>points</td>
+      <td>Small</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>sdv-id-maBYtk</td>
+      <td>170.295452</td>
+      <td>3</td>
+      <td>0.089290</td>
+      <td>1.000000</td>
+      <td>computers_accessories</td>
+      <td>voucher</td>
+      <td>Medium</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sdv-id-oodUXj</td>
+      <td>83.065603</td>
+      <td>1</td>
+      <td>0.236471</td>
+      <td>1.000000</td>
+      <td>furniture_decor</td>
+      <td>voucher</td>
+      <td>Small</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sdv-id-zroJIL</td>
+      <td>98.250248</td>
+      <td>1</td>
+      <td>0.369709</td>
+      <td>1.000000</td>
+      <td>fashion_bags_accessories</td>
+      <td>points</td>
+      <td>Small</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-60d24024-2ca0-43c4-b3df-b7ac8ed7489a')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-60d24024-2ca0-43c4-b3df-b7ac8ed7489a button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-60d24024-2ca0-43c4-b3df-b7ac8ed7489a');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+<section id="visualize-the-clusters">
+<h4>3.2 Visualize the Clusters<a class="headerlink" href="#visualize-the-clusters" title="Permalink to this heading">#</a></h4>
+<p>Create two visualizations to understand your clusters:</p>
+<ul class="simple">
+<li><p><strong>Visualization 1: Cluster Profile Heatmap</strong></p>
+<ul>
+<li><p>Visualize the cluster profiles using a heatmap to understand the average characteristics of each segment.</p></li>
+<li><p>Step 1: Compute the mean of the four numerical features (<code class="docutils literal notranslate"><span class="pre">basket_size</span></code>, <code class="docutils literal notranslate"><span class="pre">basket_qty</span></code>, <code class="docutils literal notranslate"><span class="pre">freight_ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">product_diversity</span></code>) for each cluster.</p></li>
+<li><p>Step 2: Scale these means (e.g., using <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> to calculate Z-scores) so that different units (price vs. count) can be compared directly.</p></li>
+<li><p>Step 3: Plot the scaled means as a heatmap:</p>
+<ul>
+<li><p>X-axis: Cluster number</p></li>
+<li><p>Y-axis: Feature name</p></li>
+<li><p>Color: Use a diverging colormap (e.g., <code class="docutils literal notranslate"><span class="pre">RdBu_r</span></code>) to distinguish features that are above average (positive Z-score) from those that are below average (negative Z-score)</p></li>
+<li><p>Annotation: Display the Z-score values in each cell</p></li>
+</ul>
+</li>
+<li><p>Add a clear title.</p></li>
+</ul>
+</li>
+<li><p><strong>Visualization 2: Cluster Size Distribution</strong></p>
+<ul>
+<li><p>Create a bar chart showing the number of orders in each cluster.</p>
+<ul>
+<li><p>X-axis: Cluster number (0, 1, 2, …)</p></li>
+<li><p>Y-axis: Count of orders</p></li>
+<li><p>This helps you understand if clusters are balanced or if some clusters dominate.</p></li>
+</ul>
+</li>
+<li><p>Add a title and axis labels.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3.2 ANSWER: Visualization 1 - Cluster profile heatmap</span>
+<span class="c1"># Compute the mean of the four numerical features for each cluster</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;basket_size&#39;</span><span class="p">,</span> <span class="s1">&#39;basket_qty&#39;</span><span class="p">,</span> <span class="s1">&#39;freight_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;product_diversity&#39;</span><span class="p">]</span>
+<span class="n">cluster_means</span> <span class="o">=</span> <span class="n">all_orders_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cluster&#39;</span><span class="p">)[</span><span class="n">num_features</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Scale these means using StandardScaler to calculate Z-scores</span>
+<span class="n">scaler_heatmap</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaled_means_array</span> <span class="o">=</span> <span class="n">scaler_heatmap</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">cluster_means</span><span class="p">)</span>
+
+<span class="n">scaled_means_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">scaled_means_array</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">cluster_means</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">cluster_means</span><span class="o">.</span><span class="n">index</span>
+<span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># Plot the heatmap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">scaled_means_df</span><span class="p">,</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdBu_r&quot;</span><span class="p">,</span>
+    <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">linewidths</span><span class="o">=</span><span class="mf">.5</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cluster Profile Heatmap (Z-Scores)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cluster Number&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature Name&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9afc362887f98680163029cdb827a518dbc6e62f07e68be118536de879c9b7e6.png" src="_images/9afc362887f98680163029cdb827a518dbc6e62f07e68be118536de879c9b7e6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3.2 ANSWER: Visualization 2 - Cluster size distribution</span>
+<span class="c1"># Calculate the number of orders for each cluster</span>
+<span class="n">cluster_counts</span> <span class="o">=</span> <span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+
+<span class="c1"># Draw a bar chart</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">cluster_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">cluster_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cluster Size Distribution&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Cluster Number&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Count of Orders&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cluster_counts</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">count</span> <span class="o">+</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">cluster_counts</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">*</span><span class="mf">0.01</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5021cd1aa206914cedc7cef65db5df25c34fffa1e4cadb912f0707ec7a0c0971.png" src="_images/5021cd1aa206914cedc7cef65db5df25c34fffa1e4cadb912f0707ec7a0c0971.png" />
+</div>
+</div>
+<p><strong>Briefly comment (2-3 sentences) on:</strong></p>
+<ul class="simple">
+<li><p>How well separated do the clusters appear based on the heatmap?</p></li>
+<li><p>Which features seem to have the most significant impact on defining the clusters? Why might this be the case?</p></li>
+<li><p>Based on the visualizations that you have generated, comment on the nature of the clusters and what it implies for an e-commerce business</p></li>
+</ul>
+<p><strong>3.2 ANSWER:</strong></p>
+<ul class="simple">
+<li><p>The clusters appear well-separated, as each segment is distinctly defined by extreme positive or negative Z-scores in at least one key feature.</p></li>
+<li><p>Features like basket_size, freight_ratio, and product_diversity have the most significant impact, as they strongly capture contrasting purchasing behaviors such as premium spending versus bulk buying.</p></li>
+<li><p>For an e-commerce business, this implies operations should be optimized for dominant low-value orders, while tailored strategies are needed to maximize profitability from high-value niche segments.</p></li>
+</ul>
+</section>
+</section>
+<section id="market-basket-analysis-association-rule-mining-8-marks">
+<h3>4: Market Basket Analysis (Association Rule Mining) [8 Marks]<a class="headerlink" href="#market-basket-analysis-association-rule-mining-8-marks" title="Permalink to this heading">#</a></h3>
+<section id="context-what-is-market-basket-analysis">
+<h4>4.1 Context: What is Market Basket Analysis?<a class="headerlink" href="#context-what-is-market-basket-analysis" title="Permalink to this heading">#</a></h4>
+<p>Market Basket Analysis is an unsupervised learning technique that identifies which products, categories, or attributes are frequently observed together. In e-commerce, this helps answer questions such as:</p>
+<ul class="simple">
+<li><p>“Which payment methods are preferred for which product categories?”</p></li>
+<li><p>“Do certain order sizes correlate with specific product types?”</p></li>
+<li><p>“What are the multi-dimensional patterns across category, payment, and order size?”</p></li>
+</ul>
+<p>Association rules are commonly described using three key metrics:</p>
+<ul class="simple">
+<li><p><strong>Support</strong>: How frequently a pattern occurs (0-1 scale)</p></li>
+<li><p><strong>Confidence</strong>: Likelihood of the consequent given the antecedent (0-1 scale)</p></li>
+<li><p><strong>Lift</strong>: How much more likely the rule is compared to random chance (&gt; 1 indicates a positive association)</p></li>
+</ul>
+<p>The Apriori algorithm discovers frequent itemsets and then generates association rules from them.</p>
+<p>In this task, you will perform Market Basket Analysis using the categorical features from <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> to discover multi-dimensional associations between product category, payment type, and order size category.</p>
+</section>
+<section id="prepare-transaction-data-1-mark">
+<h4>4.2 Prepare Transaction Data [1 Mark]<a class="headerlink" href="#prepare-transaction-data-1-mark" title="Permalink to this heading">#</a></h4>
+<p>Convert each order in <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> into a simple “basket” representation.</p>
+<p>Create a Python list called <code class="docutils literal notranslate"><span class="pre">transactions</span></code>, where each element represents one order and contains exactly three string items constructed from that order:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cat_{top_product_category}</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">cat_electronics</span></code>, <code class="docutils literal notranslate"><span class="pre">cat_furniture_decor</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pay_{payment_type}</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">pay_credit_card</span></code>, <code class="docutils literal notranslate"><span class="pre">pay_boleto</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size_{order_size_category}</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">size_Small</span></code>, <code class="docutils literal notranslate"><span class="pre">size_Large</span></code>)</p></li>
+</ul>
+<p>After constructing <code class="docutils literal notranslate"><span class="pre">transactions</span></code>, display the first 5 transactions to verify the format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.2 ANSWER: Create transaction list</span>
+
+<span class="c1"># pack three columns of data and generate a list of strings with a specific prefix</span>
+<span class="n">transactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;cat_</span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;pay_</span><span class="si">{</span><span class="n">pay</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;size_</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">cat</span><span class="p">,</span> <span class="n">pay</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">],</span>
+        <span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">],</span>
+        <span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;order_size_category&#39;</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># Display the first 5 transactions to verify the format</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== First 5 Transactions ==========&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">transactions</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== First 5 Transactions ==========
+[&#39;cat_construction_tools_construction&#39;, &#39;pay_voucher&#39;, &#39;size_Small&#39;]
+[&#39;cat_health_beauty&#39;, &#39;pay_credit_card&#39;, &#39;size_Small&#39;]
+[&#39;cat_luggage_accessories&#39;, &#39;pay_debit_card&#39;, &#39;size_Small&#39;]
+[&#39;cat_computers_accessories&#39;, &#39;pay_credit_card&#39;, &#39;size_Small&#39;]
+[&#39;cat_pet_shop&#39;, &#39;pay_voucher&#39;, &#39;size_Medium&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="encode-transactions-and-apply-apriori-algorithm-2-marks">
+<h4>4.3 Encode Transactions and Apply Apriori Algorithm [2 Marks]<a class="headerlink" href="#encode-transactions-and-apply-apriori-algorithm-2-marks" title="Permalink to this heading">#</a></h4>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">mlxtend</span></code> library to discover frequent itemsets and generate association rules.</p>
+<ul class="simple">
+<li><p>Step 1: Encode transactions using <code class="docutils literal notranslate"><span class="pre">TransactionEncoder</span></code> and display the shape of the encoded DataFrame.</p></li>
+<li><p>Step 2: Apply <code class="docutils literal notranslate"><span class="pre">apriori()</span></code> with <code class="docutils literal notranslate"><span class="pre">min_support</span> <span class="pre">=</span> <span class="pre">0.01</span></code> and <code class="docutils literal notranslate"><span class="pre">use_colnames</span> <span class="pre">=</span> <span class="pre">True</span></code>, then display the number of frequent itemsets found.</p></li>
+<li><p>Step 3: Generate association rules using <code class="docutils literal notranslate"><span class="pre">association_rules()</span></code> with <code class="docutils literal notranslate"><span class="pre">metric</span> <span class="pre">=</span> <span class="pre">'lift'</span></code> and <code class="docutils literal notranslate"><span class="pre">min_threshold</span> <span class="pre">=</span> <span class="pre">1.0</span></code>, then display the number of rules generated.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.3 ANSWER: Step 1 - Encode transactions</span>
+<span class="c1"># Instantiate encoder</span>
+<span class="n">encoder</span> <span class="o">=</span> <span class="n">TransactionEncoder</span><span class="p">()</span>
+
+<span class="c1"># Fit and transform the transactions list</span>
+<span class="n">encoded_array</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+
+<span class="c1"># Convert the transformed boolean array back into DataFrame</span>
+<span class="n">encoded_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">encoded_array</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">encoder</span><span class="o">.</span><span class="n">columns_</span><span class="p">)</span>
+
+<span class="c1"># Print shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== Encoded DataFrame Shape ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">encoded_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== Encoded DataFrame Shape ==========
+(46287, 79)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.3 ANSWER: Step 2 - Apply Apriori</span>
+<span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">encoded_df</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== Number of Frequent Itemsets Found ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== Number of Frequent Itemsets Found ==========
+102
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.3 ANSWER: Step 3 - Generate association rules</span>
+<span class="n">rules</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== Number of Association Rules Generated ==========&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rules</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== Number of Association Rules Generated ==========
+138
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extract-and-display-top-10-rules-1-mark">
+<h4>4.4 Extract and Display Top 10 Rules [1 Mark]<a class="headerlink" href="#extract-and-display-top-10-rules-1-mark" title="Permalink to this heading">#</a></h4>
+<p>Sort the association rules by <strong>lift</strong> in descending order and display the top 10 rules in a table showing:</p>
+<ul class="simple">
+<li><p>Antecedents (left-hand side of rule)</p></li>
+<li><p>Consequents (right-hand side of rule)</p></li>
+<li><p>Support</p></li>
+<li><p>Confidence</p></li>
+<li><p>Lift</p></li>
+</ul>
+<p>Example rule output and interpretation:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>antecedents</p></th>
+<th class="head text-left"><p>consequents</p></th>
+<th class="head text-left"><p>support</p></th>
+<th class="head text-left"><p>confidence</p></th>
+<th class="head text-left"><p>lift</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>(cat_furniture_decor, size_Large)</p></td>
+<td class="text-left"><p>(pay_credit_card)</p></td>
+<td class="text-left"><p>0.042</p></td>
+<td class="text-left"><p>0.756</p></td>
+<td class="text-left"><p>1.84</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>“Customers who purchase <strong>furniture</strong> in <strong>large orders</strong> have a <strong>75.6% probability</strong> (confidence) of paying with a <strong>credit card</strong>. This behavior is <strong>1.84 times more likely</strong> (lift) than the general probability of using a credit card.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.4 ANSWER: Display top 10 rules by lift</span>
+
+<span class="c1"># Sort by lift in descending order and take the top 10 rows</span>
+<span class="n">top_10_rules</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Only extract the 5 columns required by the question</span>
+<span class="n">columns_to_display</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;antecedents&#39;</span><span class="p">,</span> <span class="s1">&#39;consequents&#39;</span><span class="p">,</span> <span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="s1">&#39;confidence&#39;</span><span class="p">,</span> <span class="s1">&#39;lift&#39;</span><span class="p">]</span>
+<span class="n">top_10_rules_display</span> <span class="o">=</span> <span class="n">top_10_rules</span><span class="p">[</span><span class="n">columns_to_display</span><span class="p">]</span>
+
+<span class="c1"># Print Display</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== Top 10 Association Rules by Lift ==========&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">top_10_rules_display</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== Top 10 Association Rules by Lift ==========
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-47679d59-502a-4d5e-b3a9-8a9be20ec204" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>24</th>
+      <td>(size_Large)</td>
+      <td>(cat_furniture_decor)</td>
+      <td>0.014583</td>
+      <td>0.392899</td>
+      <td>5.328480</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>(cat_furniture_decor)</td>
+      <td>(size_Large)</td>
+      <td>0.014583</td>
+      <td>0.197773</td>
+      <td>5.328480</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>(cat_bed_bath_table)</td>
+      <td>(pay_credit_card, size_Medium)</td>
+      <td>0.016851</td>
+      <td>0.121514</td>
+      <td>2.023212</td>
+    </tr>
+    <tr>
+      <th>72</th>
+      <td>(pay_credit_card, size_Medium)</td>
+      <td>(cat_bed_bath_table)</td>
+      <td>0.016851</td>
+      <td>0.280576</td>
+      <td>2.023212</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>(size_Medium)</td>
+      <td>(pay_credit_card, cat_bed_bath_table)</td>
+      <td>0.016851</td>
+      <td>0.171693</td>
+      <td>1.757439</td>
+    </tr>
+    <tr>
+      <th>73</th>
+      <td>(pay_credit_card, cat_bed_bath_table)</td>
+      <td>(size_Medium)</td>
+      <td>0.016851</td>
+      <td>0.172490</td>
+      <td>1.757439</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>(cat_furniture_decor)</td>
+      <td>(size_Medium)</td>
+      <td>0.012660</td>
+      <td>0.171696</td>
+      <td>1.749354</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>(size_Medium)</td>
+      <td>(cat_furniture_decor)</td>
+      <td>0.012660</td>
+      <td>0.128990</td>
+      <td>1.749354</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>(cat_bed_bath_table)</td>
+      <td>(size_Medium)</td>
+      <td>0.022749</td>
+      <td>0.164044</td>
+      <td>1.671388</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>(size_Medium)</td>
+      <td>(cat_bed_bath_table)</td>
+      <td>0.022749</td>
+      <td>0.231785</td>
+      <td>1.671388</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-47679d59-502a-4d5e-b3a9-8a9be20ec204')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-47679d59-502a-4d5e-b3a9-8a9be20ec204 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-47679d59-502a-4d5e-b3a9-8a9be20ec204');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+  <div id="id_5abe399c-b454-4ced-8e7a-9a254665df64">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('top_10_rules_display')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_5abe399c-b454-4ced-8e7a-9a254665df64 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('top_10_rules_display');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+<section id="interpretation-3-4-sentences-3-marks">
+<h4>4.5 Interpretation (3-4 sentences) [3 Marks]<a class="headerlink" href="#interpretation-3-4-sentences-3-marks" title="Permalink to this heading">#</a></h4>
+<p>Write a brief interpretation explaining:</p>
+<ul class="simple">
+<li><p>What the top 3 unique rules tell you about customer behavior</p></li>
+<li><p>Which combinations are most strongly associated (highest lift)</p></li>
+<li><p>Why these associations might exist (business intuition)</p></li>
+<li><p>Change the min_support value to 0.005 and 0.3 and comment on any changes in the rules identified</p></li>
+</ul>
+<p><strong>4.5 ANSWER:</strong></p>
+<p><em>The top rules show that furniture_decor is most strongly associated with size_Large orders (highest lift of 5.3), which makes sense because furniture items are naturally bulky and expensive. Another key behavior is that customers buying bed_bath_table items usually place size_Medium orders and prefer paying with a credit_card (lift &gt; 2.0). If we decrease min_support to 0.005, we will get many more rules by including rarer purchases, but if we increase it to 0.3, we will likely find zero rules because it is too strict for any combination to appear in 30% of all orders.</em></p>
+</section>
+<section id="business-recommendations-2-3-bullet-points-1-mark">
+<h4>4.6 Business Recommendations (2-3 bullet points) [1 Mark]<a class="headerlink" href="#business-recommendations-2-3-bullet-points-1-mark" title="Permalink to this heading">#</a></h4>
+<p>Based on the discovered associations, provide actionable business recommendations for an e-commerce firm.</p>
+<p><strong>4.6 ANSWER:</strong></p>
+<p><em>[Write your business recommendations here as bullet points]</em></p>
+<ul class="simple">
+<li><p>Optimize Shipping for Furniture: Since furniture purchases are very strongly associated with large orders (lift &gt; 5.0), the company should negotiate better rates with heavy-freight shipping partners to reduce costs and improve profit margins.</p></li>
+<li><p>Credit Card Promotions for Home Goods: There is a strong link (lift &gt; 2.0) between bed_bath_table items and credit card payments. The business can partner with credit card companies to offer discounts or cashback for the home goods category to encourage more sales.</p></li>
+<li><p>Bundle Recommendations: Knowing that large orders are often furniture, the platform can automatically recommend complementary small items (like pillows or lamps) during checkout to increase the overall basket size.</p></li>
+</ul>
+</section>
+<section id="tips">
+<h4>Tips<a class="headerlink" href="#tips" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Rules with <strong>lift &gt; 1.5</strong> are considered strong associations; rules with <strong>lift &gt; 2.0</strong> are very strong.</p></li>
+<li><p>When writing interpretations, explain not just the statistical strength but also the <strong>business logic</strong> behind the patterns.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="task-report-5-marks">
+<h2>Task: Report (5 Marks)<a class="headerlink" href="#task-report-5-marks" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3>Objective<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>(Note: No separate report submission is required.) The report comprises the write-up that you have been working on within this iPython notebook. The write-up/report should clearly describe the steps performed and the reasoning behind each processing done for all the tasks from Assignment 1 until Association mining above.</p>
+</section>
+<section id="write-up-report">
+<h3>1: Write-up / Report<a class="headerlink" href="#write-up-report" title="Permalink to this heading">#</a></h3>
+<p>Describe the steps performed and the reasoning behind each processing step for all tasks you have worked on so far:</p>
+<ul class="simple">
+<li><p>Assignment 1 (data cleaning and preprocessing)</p></li>
+<li><p>Assignment 2 (supervised learning)</p></li>
+<li><p>Assignment 3 (unsupervised learning)</p></li>
+</ul>
+<p>Include your explanations inline near the cells where processing is done, and keep your descriptions concise but clear. Connect each analysis step to business objectives where appropriate.</p>
+</section>
+<hr class="docutils" />
+<section id="publish-the-report">
+<h3>2: Publish the Report<a class="headerlink" href="#publish-the-report" title="Permalink to this heading">#</a></h3>
+<p>Publish the report as a read-only <a class="reference external" href="http://github.io">github.io</a> static page.</p>
+<ul class="simple">
+<li><p>Note: this differs from setting up a GitHub repository with your iPython notebook in it.</p></li>
+<li><p>Convert your notebook to HTML and host it on GitHub Pages (e.g., using nbconvert or Jupyter Book).</p></li>
+</ul>
+<p>Ensure the page is publicly accessible and provide the URL in your Canvas submission.</p>
+<p><strong>Your published URL:</strong></p>
+<p><em>[Add your <a class="reference external" href="http://github.io">github.io</a> URL here once published]</em></p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="end-of-assignment-3">
+<h1>End of Assignment 3<a class="headerlink" href="#end-of-assignment-3" title="Permalink to this heading">#</a></h1>
+<p><strong>Before submission, ensure:</strong></p>
+<ol class="arabic simple">
+<li><p>All code cells execute without errors</p></li>
+<li><p>All markdown cells contain your written explanations</p></li>
+<li><p>Visualizations are clear and properly labeled</p></li>
+<li><p>Your notebook tells a coherent story from start to finish</p></li>
+<li><p>Your <a class="reference external" href="http://github.io">github.io</a> page is published and URL is provided</p></li>
+</ol>
+<p><strong>Good luck!</strong></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_supervised.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Assignment 2: Supervised Learning Techniques for E-Commerce Orders</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-your-cleaned-dataset-from-assignment-1">Load Your Cleaned Dataset from Assignment 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-unsupervised-learning">Task: Unsupervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing-for-unsupervised-learning-1-mark">1: Data Preprocessing for Unsupervised Learning [1 Mark]</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-all-orders-df-one-row-per-order">1.1 Create <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> (one row per order)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-orders-analysis-df">1.2 Create <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determine-the-optimal-number-of-clusters-3-marks">2: Determine the Optimal Number of Clusters [3 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-k-means-for-different-cluster-numbers">2.1 Run K-Means for Different Cluster Numbers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elbow-method-for-optimal-clusters">2.2 Elbow Method for Optimal Clusters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-analysis-and-visualization-3-marks">3: Cluster Analysis and Visualization [3 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-cluster-number-for-each-order">3.1 Identify the Cluster Number for Each Order</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-clusters">3.2 Visualize the Clusters</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#market-basket-analysis-association-rule-mining-8-marks">4: Market Basket Analysis (Association Rule Mining) [8 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#context-what-is-market-basket-analysis">4.1 Context: What is Market Basket Analysis?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-transaction-data-1-mark">4.2 Prepare Transaction Data [1 Mark]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encode-transactions-and-apply-apriori-algorithm-2-marks">4.3 Encode Transactions and Apply Apriori Algorithm [2 Marks]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-and-display-top-10-rules-1-mark">4.4 Extract and Display Top 10 Rules [1 Mark]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-3-4-sentences-3-marks">4.5 Interpretation (3-4 sentences) [3 Marks]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#business-recommendations-2-3-bullet-points-1-mark">4.6 Business Recommendations (2-3 bullet points) [1 Mark]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tips">Tips</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-report-5-marks">Task: Report (5 Marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-up-report">1: Write-up / Report</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-the-report">2: Publish the Report</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#end-of-assignment-3">End of Assignment 3</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

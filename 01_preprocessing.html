@@ -1,0 +1,2697 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders &#8212; My Jupyter Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_preprocessing';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Assignment 2: Supervised Learning Techniques for E-Commerce Orders" href="02_supervised.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_supervised.html">Assignment 2: Supervised Learning Techniques for E-Commerce Orders</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="03_unsupervised.html">Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_preprocessing.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitted-by">Submitted by</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preprocessing-10-marks">Part 1: Data Preprocessing (10 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-joining-4-marks">1.1 Data Loading &amp; Joining (4 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-csv-files">Load the CSV files</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-each-table">Inspect each table</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#join-the-tables-on-order-id-to-create-a-single-order-level-dataframe">Join the tables on <code class="docutils literal notranslate"><span class="pre">order_id</span></code> to create a single order-level DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-3-marks">1.2 Data Cleaning (3 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">Handle missing values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-clearly-invalid-numeric-records">Remove clearly invalid numeric records</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-cleanliness-and-key-uniqueness">Check cleanliness and key uniqueness</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transformation-3-marks">1.3 Data Transformation (3 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sanity-checks-on-counts-and-values">Sanity checks on counts and values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-value-per-item">Create <code class="docutils literal notranslate"><span class="pre">order_value_per_item</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-size-category">Create <code class="docutils literal notranslate"><span class="pre">order_size_category</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-transformation-check">Final transformation check</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-storage">1.4 Data Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-save-cleaned-dataset">1.4A Save cleaned dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-eda-data-visualization-4-marks">Part 2: EDA &amp; Data Visualization (4 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-transformed-dataset">2.0 Load Transformed Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reload-csv">2.0 Reload CSV</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-categories-and-payment-types-1-mark">2.1 Unique Categories and Payment Types (1 mark)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart-of-orders-by-product-category-2-marks">2.2 Bar Chart of Orders by Product Category (2 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-bar-chart">Create bar chart</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-interpretation">Brief interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot-order-value-vs-number-of-items-2-mark">2.3 Box Plot: Order Value vs Number of Items (2 mark)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-box-plot">Create box plot</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Brief interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="assignment-1-data-preprocessing-and-eda-for-ecommerce-orders">
+<h1>Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders<a class="headerlink" href="#assignment-1-data-preprocessing-and-eda-for-ecommerce-orders" title="Permalink to this heading">#</a></h1>
+<p>This notebook is your working template for <strong>Assignment 1</strong>.</p>
+<p>You will:</p>
+<ul class="simple">
+<li><p>Load <strong>four tables</strong> (<code class="docutils literal notranslate"><span class="pre">orders</span></code>, <code class="docutils literal notranslate"><span class="pre">order_items</span></code>, <code class="docutils literal notranslate"><span class="pre">order_shipping</span></code>, <code class="docutils literal notranslate"><span class="pre">payments</span></code>).</p></li>
+<li><p>Join them into a single order-level dataset.</p></li>
+<li><p>Clean and transform the data.</p></li>
+<li><p>Perform basic EDA and visualization.</p></li>
+</ul>
+<p>Work <strong>top-to-bottom</strong>. Complete each sub-part in the order they appear before proceeding.</p>
+<section id="submitted-by">
+<h2>Submitted by<a class="headerlink" href="#submitted-by" title="Permalink to this heading">#</a></h2>
+<p>Group number on Canvas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Student ID (AxxxxxxxZ)</p></th>
+<th class="head"><p>NUSNet ID (exxxxxxx)</p></th>
+<th class="head"><p>Name (as it appears on Canvas)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Member 1 ID</p></td>
+<td><p>Member 1 NUSNet</p></td>
+<td><p>Member 1 Name</p></td>
+</tr>
+<tr class="row-odd"><td><p>Member 2 ID</p></td>
+<td><p>Member 2 NUSNet</p></td>
+<td><p>Member 2 Name</p></td>
+</tr>
+<tr class="row-even"><td><p>Member 3 ID</p></td>
+<td><p>Member 3 NUSNet</p></td>
+<td><p>Member 3 Name</p></td>
+</tr>
+<tr class="row-odd"><td><p>Member 4 ID</p></td>
+<td><p>Member 4 NUSNet</p></td>
+<td><p>Member 4 Name</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
+<p>Run the cell below to import the required Python packages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sklearn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="part-1-data-preprocessing-10-marks">
+<h2>Part 1: Data Preprocessing (10 marks)<a class="headerlink" href="#part-1-data-preprocessing-10-marks" title="Permalink to this heading">#</a></h2>
+<section id="data-loading-joining-4-marks">
+<h3>1.1 Data Loading &amp; Joining (4 marks)<a class="headerlink" href="#data-loading-joining-4-marks" title="Permalink to this heading">#</a></h3>
+<p>We first load each table, inspect it, and then join them into a single DataFrame.</p>
+<section id="load-the-csv-files">
+<h4>Load the CSV files<a class="headerlink" href="#load-the-csv-files" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Dowload the four CSV files from canvas and upload them under the ‘files’ tab for this colab instance</p></li>
+<li><p>Load the four CSV files using <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> into:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">df_orders</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df_order_items</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df_shipping</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df_payments</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Update the filenames/paths if necessary.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: load the CSV files</span>
+<span class="n">df_orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;orders.csv&#39;</span><span class="p">)</span>
+<span class="n">df_order_items</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;order_items.csv&#39;</span><span class="p">)</span>
+<span class="n">df_shipping</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;order_shipping.csv&#39;</span><span class="p">)</span>
+<span class="n">df_payments</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;payments.csv&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All files loaded successfully.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># ANSWER: load the CSV files</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">df_orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;orders.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df_order_items</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;order_items.csv&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">df_shipping</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;order_shipping.csv&#39;</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/pandas/io/parsers/readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/pandas/io/parsers/readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.10.19/x64/lib/python3.10/site-packages/pandas/io/common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;orders.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inspect-each-table">
+<h4>Inspect each table<a class="headerlink" href="#inspect-each-table" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>For <strong>each</strong> DataFrame, display:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">head()</span></code> (first 5 rows)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shape</span></code> (rows, columns)</p></li>
+</ul>
+</li>
+</ul>
+<p>This helps you understand the raw structure before joining.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: inspect the DataFrames</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Orders&quot;</span><span class="p">:</span> <span class="n">df_orders</span><span class="p">,</span>
+    <span class="s2">&quot;Order Items&quot;</span><span class="p">:</span> <span class="n">df_order_items</span><span class="p">,</span>
+    <span class="s2">&quot;Shipping&quot;</span><span class="p">:</span> <span class="n">df_shipping</span><span class="p">,</span>
+    <span class="s2">&quot;Payments&quot;</span><span class="p">:</span> <span class="n">df_payments</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dfs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--- </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> ---&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Orders ---
+Shape: (100000, 6)
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-5e33d11c-00cc-41b9-a0eb-eee0bb65f7f1" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>order_status</th>
+      <th>order_purchase_hour</th>
+      <th>order_purchase_dayofweek</th>
+      <th>order_purchase_month</th>
+      <th>order_total_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>shipped</td>
+      <td>10</td>
+      <td>4</td>
+      <td>4</td>
+      <td>744.312535</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-gqShVM</td>
+      <td>delivered</td>
+      <td>19</td>
+      <td>2</td>
+      <td>4</td>
+      <td>1030.521912</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-vtaqcY</td>
+      <td>delivered</td>
+      <td>18</td>
+      <td>4</td>
+      <td>8</td>
+      <td>28.472994</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-xkqwdo</td>
+      <td>invoiced</td>
+      <td>23</td>
+      <td>1</td>
+      <td>8</td>
+      <td>143.914263</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-sGyHvQ</td>
+      <td>delivered</td>
+      <td>19</td>
+      <td>0</td>
+      <td>2</td>
+      <td>16.944537</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-5e33d11c-00cc-41b9-a0eb-eee0bb65f7f1')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-5e33d11c-00cc-41b9-a0eb-eee0bb65f7f1 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-5e33d11c-00cc-41b9-a0eb-eee0bb65f7f1');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Order Items ---
+Shape: (100000, 8)
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-4bc250f4-c049-4519-a2bf-aa80f15c93e2" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>num_items</th>
+      <th>num_unique_products</th>
+      <th>num_unique_sellers</th>
+      <th>total_item_price</th>
+      <th>avg_item_price</th>
+      <th>total_freight_value</th>
+      <th>top_product_category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>352.420029</td>
+      <td>369.966521</td>
+      <td>68.790159</td>
+      <td>construction_tools_construction</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-gqShVM</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1580.187928</td>
+      <td>1089.284136</td>
+      <td>84.603289</td>
+      <td>auto</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-vtaqcY</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>45.969263</td>
+      <td>36.969754</td>
+      <td>24.022637</td>
+      <td>furniture_decor</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-xkqwdo</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>146.023435</td>
+      <td>126.755360</td>
+      <td>16.945349</td>
+      <td>consoles_games</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-sGyHvQ</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>30.525812</td>
+      <td>22.797409</td>
+      <td>17.785846</td>
+      <td>air_conditioning</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-4bc250f4-c049-4519-a2bf-aa80f15c93e2')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-4bc250f4-c049-4519-a2bf-aa80f15c93e2 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-4bc250f4-c049-4519-a2bf-aa80f15c93e2');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Shipping ---
+Shape: (100000, 2)
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-14975e31-32a2-4e15-b6e9-1ecfae91cf1a" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>customer_state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>Massachusetts</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-gqShVM</td>
+      <td>Ohio</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-vtaqcY</td>
+      <td>Wisconsin</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-xkqwdo</td>
+      <td>Michigan</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-sGyHvQ</td>
+      <td>Nevada</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-14975e31-32a2-4e15-b6e9-1ecfae91cf1a')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-14975e31-32a2-4e15-b6e9-1ecfae91cf1a button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-14975e31-32a2-4e15-b6e9-1ecfae91cf1a');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Payments ---
+Shape: (100000, 2)
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-2d657847-2591-4b36-ae3c-649089b49e64" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>payment_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>voucher</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-gqShVM</td>
+      <td>voucher</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-vtaqcY</td>
+      <td>voucher</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-xkqwdo</td>
+      <td>credit_card</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-sGyHvQ</td>
+      <td>credit_card</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-2d657847-2591-4b36-ae3c-649089b49e64')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-2d657847-2591-4b36-ae3c-649089b49e64 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-2d657847-2591-4b36-ae3c-649089b49e64');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="join-the-tables-on-order-id-to-create-a-single-order-level-dataframe">
+<h4>Join the tables on <code class="docutils literal notranslate"><span class="pre">order_id</span></code> to create a single order-level DataFrame<a class="headerlink" href="#join-the-tables-on-order-id-to-create-a-single-order-level-dataframe" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Perform <strong>inner joins</strong> on <code class="docutils literal notranslate"><span class="pre">order_id</span></code> so that only orders present in <strong>all</strong> tables remain.</p></li>
+<li><p>Join order tables in this order:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df_orders</span></code> with <code class="docutils literal notranslate"><span class="pre">df_order_items</span></code></p></li>
+<li><p>result with <code class="docutils literal notranslate"><span class="pre">df_shipping</span></code></p></li>
+<li><p>result with <code class="docutils literal notranslate"><span class="pre">df_payments</span></code></p></li>
+</ol>
+</li>
+<li><p>Store the final DataFrame as <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code>.</p></li>
+<li><p>Display <code class="docutils literal notranslate"><span class="pre">head()</span></code> and <code class="docutils literal notranslate"><span class="pre">shape</span></code> for <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: join the tables</span>
+<span class="n">df_merge_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_orders</span><span class="p">,</span> <span class="n">df_order_items</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">df_merge_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_merge_1</span><span class="p">,</span> <span class="n">df_shipping</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+<span class="n">df_orders_full</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_merge_2</span><span class="p">,</span> <span class="n">df_payments</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final Shape of df_orders_full: </span><span class="si">{</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final Shape of df_orders_full: (100000, 15)
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-595ccff2-ff9c-42d6-919d-cbafdc9d6d98" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>order_status</th>
+      <th>order_purchase_hour</th>
+      <th>order_purchase_dayofweek</th>
+      <th>order_purchase_month</th>
+      <th>order_total_value</th>
+      <th>num_items</th>
+      <th>num_unique_products</th>
+      <th>num_unique_sellers</th>
+      <th>total_item_price</th>
+      <th>avg_item_price</th>
+      <th>total_freight_value</th>
+      <th>top_product_category</th>
+      <th>customer_state</th>
+      <th>payment_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>shipped</td>
+      <td>10</td>
+      <td>4</td>
+      <td>4</td>
+      <td>744.312535</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>352.420029</td>
+      <td>369.966521</td>
+      <td>68.790159</td>
+      <td>construction_tools_construction</td>
+      <td>Massachusetts</td>
+      <td>voucher</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-gqShVM</td>
+      <td>delivered</td>
+      <td>19</td>
+      <td>2</td>
+      <td>4</td>
+      <td>1030.521912</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1580.187928</td>
+      <td>1089.284136</td>
+      <td>84.603289</td>
+      <td>auto</td>
+      <td>Ohio</td>
+      <td>voucher</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-vtaqcY</td>
+      <td>delivered</td>
+      <td>18</td>
+      <td>4</td>
+      <td>8</td>
+      <td>28.472994</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>45.969263</td>
+      <td>36.969754</td>
+      <td>24.022637</td>
+      <td>furniture_decor</td>
+      <td>Wisconsin</td>
+      <td>voucher</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-xkqwdo</td>
+      <td>invoiced</td>
+      <td>23</td>
+      <td>1</td>
+      <td>8</td>
+      <td>143.914263</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>146.023435</td>
+      <td>126.755360</td>
+      <td>16.945349</td>
+      <td>consoles_games</td>
+      <td>Michigan</td>
+      <td>credit_card</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-sGyHvQ</td>
+      <td>delivered</td>
+      <td>19</td>
+      <td>0</td>
+      <td>2</td>
+      <td>16.944537</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>30.525812</td>
+      <td>22.797409</td>
+      <td>17.785846</td>
+      <td>air_conditioning</td>
+      <td>Nevada</td>
+      <td>credit_card</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-595ccff2-ff9c-42d6-919d-cbafdc9d6d98')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-595ccff2-ff9c-42d6-919d-cbafdc9d6d98 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-595ccff2-ff9c-42d6-919d-cbafdc9d6d98');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-cleaning-3-marks">
+<h3>1.2 Data Cleaning (3 marks)<a class="headerlink" href="#data-cleaning-3-marks" title="Permalink to this heading">#</a></h3>
+<p>We now clean <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code> so it is ready for analysis.</p>
+<section id="handle-missing-values">
+<h4>Handle missing values<a class="headerlink" href="#handle-missing-values" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>For <strong>numerical</strong> columns: replace missing values with the <strong>median</strong> of that column.</p></li>
+<li><p>For <strong>categorical</strong> columns: replace missing values with the <strong>mode</strong> (most frequent value).</p></li>
+<li><p>Drop any rows where <code class="docutils literal notranslate"><span class="pre">order_id</span></code> or <code class="docutils literal notranslate"><span class="pre">payment_type</span></code> is missing (if any remain)</p></li>
+</ul>
+<p>Work directly on <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy._core</span><span class="w"> </span><span class="kn">import</span> <span class="n">numeric</span>
+<span class="c1"># ANSWER: Handle missing values</span>
+
+<span class="c1"># Separate numeric and categorical columns</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">categorical_cols</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
+
+<span class="c1"># Fill numeric columns with Median</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">:</span>
+  <span class="n">median_val</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+  <span class="n">df_orders_full</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">median_val</span><span class="p">)</span>
+
+<span class="c1"># Fill categorical columns with Mode</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">categorical_cols</span><span class="p">:</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+    <span class="n">mode_val</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">df_orders_full</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">mode_val</span><span class="p">)</span>
+
+<span class="c1"># Drop rows where specific critical columns are still missing</span>
+<span class="n">df_orders_full</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="s1">&#39;payment_type&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing values handled.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Missing values handled.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="remove-clearly-invalid-numeric-records">
+<h4>Remove clearly invalid numeric records<a class="headerlink" href="#remove-clearly-invalid-numeric-records" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Remove rows where:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_items</span></code> ≤ 0, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">order_total_value</span></code> ≤ 0, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_item_price</span></code> &lt; 0, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_freight_value</span></code> &lt; 0.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: filter invalid numeric records</span>
+<span class="n">condition</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;order_total_value&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;total_item_price&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;total_freight_value&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Apply the filter</span>
+<span class="n">df_orders_full</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="n">condition</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid records removed.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape after filtering invalid records: </span><span class="si">{</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Invalid records removed.
+Shape after filtering invalid records: (89175, 15)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="check-cleanliness-and-key-uniqueness">
+<h4>Check cleanliness and key uniqueness<a class="headerlink" href="#check-cleanliness-and-key-uniqueness" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Confirm there are <strong>no null values</strong> in <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code>.</p></li>
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">order_id</span></code> is unique (one row per order).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: final cleaning checks</span>
+
+<span class="c1"># Confirm no null values</span>
+<span class="n">total_nulls</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total null values remaining: </span><span class="si">{</span><span class="n">total_nulls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check that order_id is unique</span>
+<span class="n">is_unique</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;order_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">is_unique</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Is order_id unique? </span><span class="si">{</span><span class="n">is_unique</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total null values remaining: 0
+Is order_id unique? True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="data-transformation-3-marks">
+<h3>1.3 Data Transformation (3 marks)<a class="headerlink" href="#data-transformation-3-marks" title="Permalink to this heading">#</a></h3>
+<p>Next, we perform sanity checks and create new features that will be useful later.</p>
+<section id="sanity-checks-on-counts-and-values">
+<h4>Sanity checks on counts and values<a class="headerlink" href="#sanity-checks-on-counts-and-values" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Keep only rows where both:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_items</span></code> ≥ <code class="docutils literal notranslate"><span class="pre">num_unique_products</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">order_total_value</span></code> ≥ <code class="docutils literal notranslate"><span class="pre">total_item_price</span> <span class="pre">+</span> <span class="pre">total_freight_value</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: apply sanity checks</span>
+<span class="c1"># condition 1: Total items count must be &gt;= count of unique products</span>
+<span class="n">cond_items</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_unique_products&#39;</span><span class="p">]</span>
+
+<span class="c1"># condition 2: Total order value must be &gt;= total item price + total freight value</span>
+<span class="n">cond_value</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;order_total_value&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;total_item_price&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;total_freight_value&#39;</span><span class="p">])</span>
+
+<span class="c1"># Apply both conditions，keep rows that satisfy both conditions</span>
+<span class="n">df_orders_full</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="n">cond_items</span> <span class="o">&amp;</span> <span class="n">cond_value</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape after sanity checks: </span><span class="si">{</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape after sanity checks: (46287, 15)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-order-value-per-item">
+<h4>Create <code class="docutils literal notranslate"><span class="pre">order_value_per_item</span></code><a class="headerlink" href="#create-order-value-per-item" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Create a new column <code class="docutils literal notranslate"><span class="pre">order_value_per_item</span></code> defined as <code class="docutils literal notranslate"><span class="pre">total_item_price</span> <span class="pre">/</span> <span class="pre">num_items</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: create order_value_per_item</span>
+<span class="c1"># Calculate value per item</span>
+<span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;order_value_per_item&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;total_item_price&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span>
+
+<span class="c1"># Display the first few rows to verify</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_orders_full</span><span class="p">[[</span><span class="s1">&#39;total_item_price&#39;</span><span class="p">,</span> <span class="s1">&#39;num_items&#39;</span><span class="p">,</span> <span class="s1">&#39;order_value_per_item&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-255cb1bc-3654-49e7-b8bf-211a127a63dc" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>total_item_price</th>
+      <th>num_items</th>
+      <th>order_value_per_item</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>352.420029</td>
+      <td>1</td>
+      <td>352.420029</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>289.242639</td>
+      <td>1</td>
+      <td>289.242639</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>26.893468</td>
+      <td>1</td>
+      <td>26.893468</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>37.790896</td>
+      <td>1</td>
+      <td>37.790896</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>169.528323</td>
+      <td>3</td>
+      <td>56.509441</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-255cb1bc-3654-49e7-b8bf-211a127a63dc')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-255cb1bc-3654-49e7-b8bf-211a127a63dc button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-255cb1bc-3654-49e7-b8bf-211a127a63dc');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+<section id="create-order-size-category">
+<h4>Create <code class="docutils literal notranslate"><span class="pre">order_size_category</span></code><a class="headerlink" href="#create-order-size-category" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Create a new categorical column <code class="docutils literal notranslate"><span class="pre">order_size_category</span></code> with values:</p>
+<ul>
+<li><p>“Small” if <code class="docutils literal notranslate"><span class="pre">num_items</span></code> ≤ 2</p></li>
+<li><p>“Medium” if <code class="docutils literal notranslate"><span class="pre">num_items</span></code> ≤ 5</p></li>
+<li><p>“Large” if <code class="docutils literal notranslate"><span class="pre">num_items</span></code> &gt; 5</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: create order_size_category</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">order_size_category</span><span class="p">(</span><span class="n">num_items</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">num_items</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s1">&#39;Small&#39;</span>
+  <span class="k">elif</span> <span class="n">num_items</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s1">&#39;Medium&#39;</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="s1">&#39;Large&#39;</span>
+
+<span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;order_size_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">order_size_category</span><span class="p">)</span>
+
+<span class="c1"># Verify the distribution of categories</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;order_size_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>order_size_category
+Small     40026
+Medium     4543
+Large      1718
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="final-transformation-check">
+<h4>Final transformation check<a class="headerlink" href="#final-transformation-check" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Confirm there are no null values in <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code>.</p></li>
+<li><p>Display:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">head()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shape</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">info()</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: final transformation summary</span>
+<span class="c1"># 1. Confirm no null values</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Any nulls left? </span><span class="si">{</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Display summary</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Final Shape: </span><span class="si">{</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">df_orders_full</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Any nulls left? False
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-76acfe7a-7490-4e77-bcb0-432247b20a9b" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>order_status</th>
+      <th>order_purchase_hour</th>
+      <th>order_purchase_dayofweek</th>
+      <th>order_purchase_month</th>
+      <th>order_total_value</th>
+      <th>num_items</th>
+      <th>num_unique_products</th>
+      <th>num_unique_sellers</th>
+      <th>total_item_price</th>
+      <th>avg_item_price</th>
+      <th>total_freight_value</th>
+      <th>top_product_category</th>
+      <th>customer_state</th>
+      <th>payment_type</th>
+      <th>order_value_per_item</th>
+      <th>order_size_category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>shipped</td>
+      <td>10</td>
+      <td>4</td>
+      <td>4</td>
+      <td>744.312535</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>352.420029</td>
+      <td>369.966521</td>
+      <td>68.790159</td>
+      <td>construction_tools_construction</td>
+      <td>Massachusetts</td>
+      <td>voucher</td>
+      <td>352.420029</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>sdv-id-dbopoJ</td>
+      <td>delivered</td>
+      <td>19</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1556.667902</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>289.242639</td>
+      <td>1354.621410</td>
+      <td>15.394619</td>
+      <td>health_beauty</td>
+      <td>Vermont</td>
+      <td>credit_card</td>
+      <td>289.242639</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>sdv-id-FSEOvM</td>
+      <td>delivered</td>
+      <td>15</td>
+      <td>4</td>
+      <td>8</td>
+      <td>62.060506</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>26.893468</td>
+      <td>48.485654</td>
+      <td>18.751282</td>
+      <td>luggage_accessories</td>
+      <td>South Carolina</td>
+      <td>debit_card</td>
+      <td>26.893468</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>sdv-id-bQcBUR</td>
+      <td>delivered</td>
+      <td>21</td>
+      <td>0</td>
+      <td>8</td>
+      <td>73.873470</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>37.790896</td>
+      <td>75.704909</td>
+      <td>8.670875</td>
+      <td>computers_accessories</td>
+      <td>Kentucky</td>
+      <td>credit_card</td>
+      <td>37.790896</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>sdv-id-MPxIXB</td>
+      <td>delivered</td>
+      <td>13</td>
+      <td>5</td>
+      <td>5</td>
+      <td>361.961537</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>169.528323</td>
+      <td>50.132979</td>
+      <td>34.731146</td>
+      <td>pet_shop</td>
+      <td>Missouri</td>
+      <td>voucher</td>
+      <td>56.509441</td>
+      <td>Medium</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-76acfe7a-7490-4e77-bcb0-432247b20a9b')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-76acfe7a-7490-4e77-bcb0-432247b20a9b button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-76acfe7a-7490-4e77-bcb0-432247b20a9b');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Final Shape: (46287, 17)
+
+
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 46287 entries, 0 to 99997
+Data columns (total 17 columns):
+ #   Column                    Non-Null Count  Dtype  
+---  ------                    --------------  -----  
+ 0   order_id                  46287 non-null  object 
+ 1   order_status              46287 non-null  object 
+ 2   order_purchase_hour       46287 non-null  int64  
+ 3   order_purchase_dayofweek  46287 non-null  int64  
+ 4   order_purchase_month      46287 non-null  int64  
+ 5   order_total_value         46287 non-null  float64
+ 6   num_items                 46287 non-null  int64  
+ 7   num_unique_products       46287 non-null  int64  
+ 8   num_unique_sellers        46287 non-null  int64  
+ 9   total_item_price          46287 non-null  float64
+ 10  avg_item_price            46287 non-null  float64
+ 11  total_freight_value       46287 non-null  float64
+ 12  top_product_category      46287 non-null  object 
+ 13  customer_state            46287 non-null  object 
+ 14  payment_type              46287 non-null  object 
+ 15  order_value_per_item      46287 non-null  float64
+ 16  order_size_category       46287 non-null  object 
+dtypes: float64(5), int64(6), object(6)
+memory usage: 6.4+ MB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-storage">
+<h3>1.4 Data Storage<a class="headerlink" href="#data-storage" title="Permalink to this heading">#</a></h3>
+<p>We now save the cleaned, joined, and transformed dataset.</p>
+<section id="a-save-cleaned-dataset">
+<h4>1.4A Save cleaned dataset<a class="headerlink" href="#a-save-cleaned-dataset" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Save <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code> as <code class="docutils literal notranslate"><span class="pre">ecommerce_orders_cleaned.csv</span></code> (without the index).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: save to CSV</span>
+<span class="c1"># Save the dataframe to a CSV file, excluding the index</span>
+<span class="n">df_orders_full</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;ecommerce_orders_cleaned.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File &#39;ecommerce_orders_cleaned.csv&#39; saved successfully.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File &#39;ecommerce_orders_cleaned.csv&#39; saved successfully.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-2-eda-data-visualization-4-marks">
+<h2>Part 2: EDA &amp; Data Visualization (4 marks)<a class="headerlink" href="#part-2-eda-data-visualization-4-marks" title="Permalink to this heading">#</a></h2>
+<p>We now reload the cleaned dataset and explore it.</p>
+<section id="load-transformed-dataset">
+<h3>2.0 Load Transformed Dataset<a class="headerlink" href="#load-transformed-dataset" title="Permalink to this heading">#</a></h3>
+<section id="reload-csv">
+<h4>2.0 Reload CSV<a class="headerlink" href="#reload-csv" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Load <code class="docutils literal notranslate"><span class="pre">ecommerce_orders_cleaned.csv</span></code> into <code class="docutils literal notranslate"><span class="pre">df_orders_cleaned</span></code>.</p></li>
+<li><p>Display <code class="docutils literal notranslate"><span class="pre">head()</span></code> and <code class="docutils literal notranslate"><span class="pre">shape</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: load cleaned dataset</span>
+<span class="n">df_orders_cleaned</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;ecommerce_orders_cleaned.csv&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of df_orders_cleaned: </span><span class="si">{</span><span class="n">df_orders_cleaned</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_orders_cleaned</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of df_orders_cleaned: (46287, 17)
+</pre></div>
+</div>
+<div class="output text_html">
+  <div id="df-87fc9d57-1bae-446c-9336-7cb2a7b9aaf0" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>order_status</th>
+      <th>order_purchase_hour</th>
+      <th>order_purchase_dayofweek</th>
+      <th>order_purchase_month</th>
+      <th>order_total_value</th>
+      <th>num_items</th>
+      <th>num_unique_products</th>
+      <th>num_unique_sellers</th>
+      <th>total_item_price</th>
+      <th>avg_item_price</th>
+      <th>total_freight_value</th>
+      <th>top_product_category</th>
+      <th>customer_state</th>
+      <th>payment_type</th>
+      <th>order_value_per_item</th>
+      <th>order_size_category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>shipped</td>
+      <td>10</td>
+      <td>4</td>
+      <td>4</td>
+      <td>744.312535</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>352.420029</td>
+      <td>369.966521</td>
+      <td>68.790159</td>
+      <td>construction_tools_construction</td>
+      <td>Massachusetts</td>
+      <td>voucher</td>
+      <td>352.420029</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-dbopoJ</td>
+      <td>delivered</td>
+      <td>19</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1556.667902</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>289.242639</td>
+      <td>1354.621410</td>
+      <td>15.394619</td>
+      <td>health_beauty</td>
+      <td>Vermont</td>
+      <td>credit_card</td>
+      <td>289.242639</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-FSEOvM</td>
+      <td>delivered</td>
+      <td>15</td>
+      <td>4</td>
+      <td>8</td>
+      <td>62.060506</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>26.893468</td>
+      <td>48.485654</td>
+      <td>18.751282</td>
+      <td>luggage_accessories</td>
+      <td>South Carolina</td>
+      <td>debit_card</td>
+      <td>26.893468</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-bQcBUR</td>
+      <td>delivered</td>
+      <td>21</td>
+      <td>0</td>
+      <td>8</td>
+      <td>73.873470</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>37.790896</td>
+      <td>75.704909</td>
+      <td>8.670875</td>
+      <td>computers_accessories</td>
+      <td>Kentucky</td>
+      <td>credit_card</td>
+      <td>37.790896</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-MPxIXB</td>
+      <td>delivered</td>
+      <td>13</td>
+      <td>5</td>
+      <td>5</td>
+      <td>361.961537</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>169.528323</td>
+      <td>50.132979</td>
+      <td>34.731146</td>
+      <td>pet_shop</td>
+      <td>Missouri</td>
+      <td>voucher</td>
+      <td>56.509441</td>
+      <td>Medium</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-87fc9d57-1bae-446c-9336-7cb2a7b9aaf0')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-87fc9d57-1bae-446c-9336-7cb2a7b9aaf0 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-87fc9d57-1bae-446c-9336-7cb2a7b9aaf0');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+    </div>
+  </div>
+</div></div>
+</div>
+</section>
+</section>
+<section id="unique-categories-and-payment-types-1-mark">
+<h3>2.1 Unique Categories and Payment Types (1 mark)<a class="headerlink" href="#unique-categories-and-payment-types-1-mark" title="Permalink to this heading">#</a></h3>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Compute the number of unique values in <code class="docutils literal notranslate"><span class="pre">top_product_category</span></code> and <code class="docutils literal notranslate"><span class="pre">payment_type</span></code>.</p></li>
+<li><p>Display:</p>
+<ul>
+<li><p>The top 5 product categories by order count.</p></li>
+<li><p>The top 3 payment types by order count.</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: unique counts and top values</span>
+<span class="c1"># Compute number of unique values</span>
+<span class="n">unique_cat</span> <span class="o">=</span> <span class="n">df_orders_cleaned</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="n">unique_payment</span> <span class="o">=</span> <span class="n">df_orders_cleaned</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of unique product categories: </span><span class="si">{</span><span class="n">unique_cat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of unique payment types: </span><span class="si">{</span><span class="n">unique_payment</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top 5 Product Categories:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_orders_cleaned</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Top 3 Payment Types:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_orders_cleaned</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of unique product categories: 71
+Number of unique payment types: 5
+
+
+Top 5 Product Categories:
+top_product_category
+bed_bath_table           6419
+health_beauty            4208
+furniture_decor          3413
+computers_accessories    3386
+telephony                2570
+Name: count, dtype: int64
+
+
+Top 3 Payment Types:
+payment_type
+credit_card    27987
+voucher        13812
+points          2532
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bar-chart-of-orders-by-product-category-2-marks">
+<h3>2.2 Bar Chart of Orders by Product Category (2 marks)<a class="headerlink" href="#bar-chart-of-orders-by-product-category-2-marks" title="Permalink to this heading">#</a></h3>
+<section id="create-bar-chart">
+<h4>Create bar chart<a class="headerlink" href="#create-bar-chart" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Create a bar chart of number of orders per <code class="docutils literal notranslate"><span class="pre">top_product_category</span></code>, sorted in descending order.</p></li>
+<li><p>Add a clear title and axis labels.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: bar chart of product categories</span>
+<span class="c1"># Calculate counts for each category and sort them</span>
+<span class="n">cat_counts</span> <span class="o">=</span> <span class="n">df_orders_cleaned</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">cat_counts</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span> <span class="c1"># Make the figure wide enough</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cat_counts</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Number of Orders per Product Category&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Orders&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Product Category&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipython-input-2921509209.py:8: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(data=cat_counts, x=&#39;count&#39;, y=&#39;top_product_category&#39;, palette=&#39;viridis&#39;)
+</pre></div>
+</div>
+<img alt="_images/a31f8985604c579dc6da210d35078345906a0a74ea0bb3f8da501309f443a945.png" src="_images/a31f8985604c579dc6da210d35078345906a0a74ea0bb3f8da501309f443a945.png" />
+</div>
+</div>
+</section>
+<section id="brief-interpretation">
+<h4>Brief interpretation<a class="headerlink" href="#brief-interpretation" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>In 2–3 sentences, describe any trends you see (e.g., which categories dominate, whether the distribution is skewed, etc.).</p></li>
+</ul>
+<p><em>Write your observations here.</em></p>
+<p>The bar chart shows that <strong>bed_bath_table</strong> and <strong>health_beauty</strong> are the most popular product categories, accounting for a significant portion of the orders. The distribution is <strong>skewed</strong>, with a few top categories dominating the sales, while many other categories have relatively low order counts.</p>
+</section>
+</section>
+<section id="box-plot-order-value-vs-number-of-items-2-mark">
+<h3>2.3 Box Plot: Order Value vs Number of Items (2 mark)<a class="headerlink" href="#box-plot-order-value-vs-number-of-items-2-mark" title="Permalink to this heading">#</a></h3>
+<section id="create-box-plot">
+<h4>Create box plot<a class="headerlink" href="#create-box-plot" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>Create a box plot with:</p>
+<ul>
+<li><p>X‑axis: <code class="docutils literal notranslate"><span class="pre">num_items</span></code></p></li>
+<li><p>Y‑axis: <code class="docutils literal notranslate"><span class="pre">order_total_value</span></code></p></li>
+</ul>
+</li>
+<li><p>Add a clear title and axis labels.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: box plot order_total_value vs num_items</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Create Box Plot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_orders_cleaned</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;num_items&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;order_total_value&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of Order Value by Number of Items&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Items&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Order Total Value&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipython-input-3749998017.py:5: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(data=df_orders_cleaned, x=&#39;num_items&#39;, y=&#39;order_total_value&#39;, palette=&#39;Blues&#39;)
+</pre></div>
+</div>
+<img alt="_images/16476b03dd79d99d17f7e026be74133d54b8196c98b7b6e2dc3eb57b29e73b27.png" src="_images/16476b03dd79d99d17f7e026be74133d54b8196c98b7b6e2dc3eb57b29e73b27.png" />
+</div>
+</div>
+</section>
+<section id="id1">
+<h4>Brief interpretation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p><strong>Task:</strong></p>
+<ul class="simple">
+<li><p>In 2–3 sentences, describe how order value changes as the number of items increases (e.g., linear trend, diminishing returns, many outliers, etc.).</p></li>
+</ul>
+<p><em>Write your observations here.</em></p>
+<p>The median order total value increases as the number of items increases. However, the spread of order values also becomes larger for higher item counts. There are several outliers, particularly for orders with a small number of items, indicating some high-value single purchases.</p>
+</section>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="02_supervised.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Assignment 2: Supervised Learning Techniques for E-Commerce Orders</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitted-by">Submitted by</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preprocessing-10-marks">Part 1: Data Preprocessing (10 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-joining-4-marks">1.1 Data Loading &amp; Joining (4 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-csv-files">Load the CSV files</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-each-table">Inspect each table</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#join-the-tables-on-order-id-to-create-a-single-order-level-dataframe">Join the tables on <code class="docutils literal notranslate"><span class="pre">order_id</span></code> to create a single order-level DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-3-marks">1.2 Data Cleaning (3 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">Handle missing values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-clearly-invalid-numeric-records">Remove clearly invalid numeric records</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-cleanliness-and-key-uniqueness">Check cleanliness and key uniqueness</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transformation-3-marks">1.3 Data Transformation (3 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sanity-checks-on-counts-and-values">Sanity checks on counts and values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-value-per-item">Create <code class="docutils literal notranslate"><span class="pre">order_value_per_item</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-size-category">Create <code class="docutils literal notranslate"><span class="pre">order_size_category</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-transformation-check">Final transformation check</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-storage">1.4 Data Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-save-cleaned-dataset">1.4A Save cleaned dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-eda-data-visualization-4-marks">Part 2: EDA &amp; Data Visualization (4 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-transformed-dataset">2.0 Load Transformed Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reload-csv">2.0 Reload CSV</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-categories-and-payment-types-1-mark">2.1 Unique Categories and Payment Types (1 mark)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart-of-orders-by-product-category-2-marks">2.2 Bar Chart of Orders by Product Category (2 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-bar-chart">Create bar chart</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-interpretation">Brief interpretation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot-order-value-vs-number-of-items-2-mark">2.3 Box Plot: Order Value vs Number of Items (2 mark)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-box-plot">Create box plot</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Brief interpretation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
