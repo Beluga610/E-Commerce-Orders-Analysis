@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Project (Assignment 3): Unsupervised Learning (E-Commerce Orders) &#8212; My Jupyter Book</title>
+    <title>Chapter 3: Unsupervised Learning (E-Commerce Orders) &#8212; My Jupyter Book</title>
   
   
   
@@ -170,8 +170,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="02_supervised.html">Assignment 2: Supervised Learning Techniques for E-Commerce Orders</a></li>
 
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</a></li>
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 3: Unsupervised Learning (E-Commerce Orders)</a></li>
 </ul>
 
     </div>
@@ -310,7 +309,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</h1>
+    <h1>Chapter 3: Unsupervised Learning (E-Commerce Orders)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -320,49 +319,36 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-your-cleaned-dataset-from-assignment-1">Load Your Cleaned Dataset from Assignment 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-unsupervised-learning">Task: Unsupervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-cleaned-dataset-from-chapter-1">Load Cleaned Dataset from Chapter 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing-for-unsupervised-learning-1-mark">1: Data Preprocessing for Unsupervised Learning [1 Mark]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-data-preprocessing-for-unsupervised-learning">Task 1: Data Preprocessing for Unsupervised Learning</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-all-orders-df-one-row-per-order">1.1 Create <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> (one row per order)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-orders-analysis-df">1.2 Create <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determine-the-optimal-number-of-clusters-3-marks">2: Determine the Optimal Number of Clusters [3 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-determine-the-optimal-number-of-clusters">Task 2: Determine the Optimal Number of Clusters</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-k-means-for-different-cluster-numbers">2.1 Run K-Means for Different Cluster Numbers</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elbow-method-for-optimal-clusters">2.2 Elbow Method for Optimal Clusters</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-analysis-and-visualization-3-marks">3: Cluster Analysis and Visualization [3 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-cluster-analysis-and-visualization">Task 3: Cluster Analysis and Visualization</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-cluster-number-for-each-order">3.1 Identify the Cluster Number for Each Order</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-clusters">3.2 Visualize the Clusters</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#market-basket-analysis-association-rule-mining-8-marks">4: Market Basket Analysis (Association Rule Mining) [8 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-4-market-basket-analysis-association-rule-mining">Task 4: Market Basket Analysis (Association Rule Mining)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#context-what-is-market-basket-analysis">4.1 Context: What is Market Basket Analysis?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-transaction-data-1-mark">4.2 Prepare Transaction Data [1 Mark]</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encode-transactions-and-apply-apriori-algorithm-2-marks">4.3 Encode Transactions and Apply Apriori Algorithm [2 Marks]</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-and-display-top-10-rules-1-mark">4.4 Extract and Display Top 10 Rules [1 Mark]</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-3-4-sentences-3-marks">4.5 Interpretation (3-4 sentences) [3 Marks]</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#business-recommendations-2-3-bullet-points-1-mark">4.6 Business Recommendations (2-3 bullet points) [1 Mark]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-transaction-data">4.2 Prepare Transaction Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encode-transactions-and-apply-apriori-algorithm">4.3 Encode Transactions and Apply Apriori Algorithm</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-and-display-top-10-rules">4.4 Extract and Display Top 10 Rules</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tips">Tips</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-report-5-marks">Task: Report (5 Marks)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-up-report">1: Write-up / Report</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-the-report">2: Publish the Report</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#end-of-assignment-3">End of Assignment 3</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -373,20 +359,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="project-assignment-3-unsupervised-learning-e-commerce-orders">
-<h1>Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)<a class="headerlink" href="#project-assignment-3-unsupervised-learning-e-commerce-orders" title="Permalink to this heading">#</a></h1>
-<p>This notebook is your working template for <strong>Assignment 3</strong>.</p>
-<p><strong>Note:</strong> This assessment comprises two parts: question-guided processing/modeling (Unsupervised learning) and free-form exploration.</p>
-<p><strong>Total Marks: 20</strong></p>
-<p>You will:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-3-unsupervised-learning-e-commerce-orders">
+<h1>Chapter 3: Unsupervised Learning (E-Commerce Orders)<a class="headerlink" href="#chapter-3-unsupervised-learning-e-commerce-orders" title="Permalink to this heading">#</a></h1>
+<p>We will:</p>
 <ul class="simple">
-<li><p>Continue working with the expanded dataset from Assignment 1</p></li>
+<li><p>Continue working with the expanded dataset from chapter 01</p></li>
 <li><p>Perform <strong>clustering</strong> to identify similar order types</p></li>
 <li><p>Apply <strong>market basket analysis</strong> (association rule mining)</p></li>
-<li><p>Write up findings throughout the notebook</p></li>
-<li><p>Publish your analysis as a <a class="reference external" href="http://github.io">github.io</a> page</p></li>
+<li><p>Write up findings</p></li>
+<li><p>Publish analysis as a <a class="reference external" href="http://github.io">github.io</a> page</p></li>
 </ul>
-<p>Work <strong>top-to-bottom</strong>. Complete each task in order before moving on.</p>
+<p>Work <strong>top-to-bottom</strong>. Complete each part in order before moving on.</p>
 <section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
 <p>Run the cell below to import the required Python packages.</p>
@@ -413,27 +396,175 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="load-your-cleaned-dataset-from-assignment-1">
-<h2>Load Your Cleaned Dataset from Assignment 1<a class="headerlink" href="#load-your-cleaned-dataset-from-assignment-1" title="Permalink to this heading">#</a></h2>
-<p>Load the cleaned and expanded dataset you created in Assignment 1 (and potentially modified in Assignment 2).</p>
+<section id="load-cleaned-dataset-from-chapter-1">
+<h2>Load Cleaned Dataset from Chapter 1<a class="headerlink" href="#load-cleaned-dataset-from-chapter-1" title="Permalink to this heading">#</a></h2>
+<p>Run the cell below to load the cleaned and expanded dataset created in chapter 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: Load your cleaned dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load cleaned dataset</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ecommerce_orders_cleaned.csv&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== First 5 Rows ==========&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>========== First 5 Rows ==========
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>order_status</th>
+      <th>order_purchase_hour</th>
+      <th>order_purchase_dayofweek</th>
+      <th>order_purchase_month</th>
+      <th>order_total_value</th>
+      <th>num_items</th>
+      <th>num_unique_products</th>
+      <th>num_unique_sellers</th>
+      <th>total_item_price</th>
+      <th>avg_item_price</th>
+      <th>total_freight_value</th>
+      <th>top_product_category</th>
+      <th>customer_state</th>
+      <th>payment_type</th>
+      <th>order_value_per_item</th>
+      <th>order_size_category</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>sdv-id-whzjUX</td>
+      <td>shipped</td>
+      <td>10</td>
+      <td>4</td>
+      <td>4</td>
+      <td>744.312535</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>352.420029</td>
+      <td>369.966521</td>
+      <td>68.790159</td>
+      <td>construction_tools_construction</td>
+      <td>Massachusetts</td>
+      <td>voucher</td>
+      <td>352.420029</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>sdv-id-dbopoJ</td>
+      <td>delivered</td>
+      <td>19</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1556.667902</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>289.242639</td>
+      <td>1354.621410</td>
+      <td>15.394619</td>
+      <td>health_beauty</td>
+      <td>Vermont</td>
+      <td>credit_card</td>
+      <td>289.242639</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>sdv-id-FSEOvM</td>
+      <td>delivered</td>
+      <td>15</td>
+      <td>4</td>
+      <td>8</td>
+      <td>62.060506</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>26.893468</td>
+      <td>48.485654</td>
+      <td>18.751282</td>
+      <td>luggage_accessories</td>
+      <td>South Carolina</td>
+      <td>debit_card</td>
+      <td>26.893468</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>sdv-id-bQcBUR</td>
+      <td>delivered</td>
+      <td>21</td>
+      <td>0</td>
+      <td>8</td>
+      <td>73.873470</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>37.790896</td>
+      <td>75.704909</td>
+      <td>8.670875</td>
+      <td>computers_accessories</td>
+      <td>Kentucky</td>
+      <td>credit_card</td>
+      <td>37.790896</td>
+      <td>Small</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>sdv-id-MPxIXB</td>
+      <td>delivered</td>
+      <td>13</td>
+      <td>5</td>
+      <td>5</td>
+      <td>361.961537</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>169.528323</td>
+      <td>50.132979</td>
+      <td>34.731146</td>
+      <td>pet_shop</td>
+      <td>Missouri</td>
+      <td>voucher</td>
+      <td>56.509441</td>
+      <td>Medium</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
 </div>
 </section>
 <hr class="docutils" />
-<section id="task-unsupervised-learning">
-<h2>Task: Unsupervised Learning<a class="headerlink" href="#task-unsupervised-learning" title="Permalink to this heading">#</a></h2>
+<section id="unsupervised-learning">
+<h2>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this heading">#</a></h2>
 <section id="objective">
 <h3>Objective<a class="headerlink" href="#objective" title="Permalink to this heading">#</a></h3>
-<p>In this task, you will work on unsupervised learning and support your analysis with visualization. Perform clustering to identify <strong>similar orders</strong> and generate <strong>order type recommendations</strong> based on their characteristics. An order type cluster represents a group of orders with similar purchasing patterns, value structures, and composition.</p>
+<p>In this part, we will work on unsupervised learning and support analysis with visualization. Perform clustering to identify <strong>similar orders</strong> and generate <strong>order type recommendations</strong> based on their characteristics. An order type cluster represents a group of orders with similar purchasing patterns, value structures, and composition.</p>
 </section>
-<section id="data-preprocessing-for-unsupervised-learning-1-mark">
-<h3>1: Data Preprocessing for Unsupervised Learning [1 Mark]<a class="headerlink" href="#data-preprocessing-for-unsupervised-learning-1-mark" title="Permalink to this heading">#</a></h3>
+<section id="task-1-data-preprocessing-for-unsupervised-learning">
+<h3>Task 1: Data Preprocessing for Unsupervised Learning<a class="headerlink" href="#task-1-data-preprocessing-for-unsupervised-learning" title="Permalink to this heading">#</a></h3>
 <p>Goal: Create DataFrames that contain one row per order with features suitable for both clustering and association mining.</p>
 <section id="create-all-orders-df-one-row-per-order">
 <h4>1.1 Create <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> (one row per order)<a class="headerlink" href="#create-all-orders-df-one-row-per-order" title="Permalink to this heading">#</a></h4>
@@ -452,13 +583,13 @@ document.write(`
 <p>Notes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> must have exactly one row per <code class="docutils literal notranslate"><span class="pre">order_id</span></code>.</p></li>
-<li><p>No missing values should remain in these columns after preprocessing (apply reasonable handling if needed).</p></li>
+<li><p>No missing values should remain in these columns after preprocessing.</p></li>
 <li><p>Handle potential division issues appropriately (e.g., orders with zero values).</p></li>
 <li><p>Display the first 10 rows of <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code>, its shape, and data types.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1.1 ANSWER: Create all_orders_df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create all_orders_df</span>
 
 <span class="c1"># Initialize and extract the base column</span>
 <span class="n">all_orders_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -479,7 +610,7 @@ document.write(`
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;num_unique_products&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span>
 <span class="p">)</span>
 
-<span class="c1"># Extracting classification features</span>
+<span class="c1"># Extract classification features</span>
 <span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span>
 <span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">]</span>
 <span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;order_size_category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;order_size_category&#39;</span><span class="p">]</span>
@@ -676,15 +807,16 @@ dtype: object
 </section>
 <section id="create-orders-analysis-df">
 <h4>1.2 Create <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code><a class="headerlink" href="#create-orders-analysis-df" title="Permalink to this heading">#</a></h4>
+<p>Notes:</p>
 <ul class="simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> from sklearn to split the data in <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code>.</p></li>
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">test_size=0.3</span></code> (keep 30% of data for analysis) and <code class="docutils literal notranslate"><span class="pre">random_state=37</span></code> for reproducibility.</p></li>
 <li><p>Assign the <strong>test set</strong> to the variable <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code>.</p></li>
+<li><p>Display the shape of <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code> and show its first 10 rows.</p></li>
 </ul>
-<p>Display the shape of <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code> and show its first 10 rows.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1.2 ANSWER: Create orders_analysis_df using train_test_split</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create orders_analysis_df using train_test_split</span>
 
 <span class="n">orders_train_df</span><span class="p">,</span> <span class="n">orders_analysis_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
     <span class="n">all_orders_df</span><span class="p">,</span>
@@ -852,8 +984,8 @@ dtype: object
 </div>
 </section>
 </section>
-<section id="determine-the-optimal-number-of-clusters-3-marks">
-<h3>2: Determine the Optimal Number of Clusters [3 Marks]<a class="headerlink" href="#determine-the-optimal-number-of-clusters-3-marks" title="Permalink to this heading">#</a></h3>
+<section id="task-2-determine-the-optimal-number-of-clusters">
+<h3>Task 2: Determine the Optimal Number of Clusters<a class="headerlink" href="#task-2-determine-the-optimal-number-of-clusters" title="Permalink to this heading">#</a></h3>
 <section id="run-k-means-for-different-cluster-numbers">
 <h4>2.1 Run K-Means for Different Cluster Numbers<a class="headerlink" href="#run-k-means-for-different-cluster-numbers" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
@@ -865,7 +997,7 @@ dtype: object
 <p>Inertia is a measure of how tightly packed the clusters are. It is the sum of squared distances between each point and its assigned cluster center (centroid). Lower inertia indicates that the clusters are more compact, and the points are closer to their centroids, suggesting better clustering.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.1 ANSWER: Run K-means for k=3 to 9 and calculate inertia</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Run K-means for k=3 to 9 and calculate inertia</span>
 
 <span class="c1"># Extract four numerical features</span>
 <span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;basket_size&#39;</span><span class="p">,</span> <span class="s1">&#39;basket_qty&#39;</span><span class="p">,</span> <span class="s1">&#39;freight_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;product_diversity&#39;</span><span class="p">]</span>
@@ -971,14 +1103,12 @@ dtype: object
 <h4>2.2 Elbow Method for Optimal Clusters<a class="headerlink" href="#elbow-method-for-optimal-clusters" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Plot the <strong>inertia</strong> (y-axis) against the <strong>number of clusters</strong> (x-axis) to identify the optimal number of clusters using the <strong>Elbow method</strong>.</p></li>
-</ul>
-<p>The Elbow Method helps in selecting the number of clusters by identifying where the inertia starts to decrease more slowly.</p>
-<ul class="simple">
 <li><p>Based on the Elbow plot, <strong>choose the optimal number of clusters</strong> and state your choice clearly.</p></li>
 </ul>
+<p>The Elbow Method helps in selecting the number of clusters by identifying where the inertia starts to decrease more slowly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2.2 ANSWER: Create Elbow plot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Elbow plot</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
@@ -1007,12 +1137,12 @@ dtype: object
 <img alt="_images/9f99ae22746d4c06142f7c459b116c433e1727bdda4cd90c7985c58be594f667.png" src="_images/9f99ae22746d4c06142f7c459b116c433e1727bdda4cd90c7985c58be594f667.png" />
 </div>
 </div>
-<p><strong>Statement of my choice</strong></p>
-<p>I choose 6 as the optimal number of clusters. From the elbow plot, inertia decreases sharply between k=3 and k=6. After k=6, the curve flattens, and inertia reduction becomes small and linear. This shows k=6 is the elbow point: adding more clusters beyond 6 does not significantly improve data partitioning.</p>
+<p><strong>💡Optimal choice of k</strong></p>
+<p>Here, we choose 6 as the optimal number of clusters. From the elbow plot, inertia decreases sharply between k=3 and k=6. After k=6, the curve flattens, and inertia reduction becomes small and linear. This shows k=6 is the elbow point and adding more clusters beyond 6 does not significantly improve data partitioning.</p>
 </section>
 </section>
-<section id="cluster-analysis-and-visualization-3-marks">
-<h3>3: Cluster Analysis and Visualization [3 Marks]<a class="headerlink" href="#cluster-analysis-and-visualization-3-marks" title="Permalink to this heading">#</a></h3>
+<section id="task-3-cluster-analysis-and-visualization">
+<h3>Task 3: Cluster Analysis and Visualization<a class="headerlink" href="#task-3-cluster-analysis-and-visualization" title="Permalink to this heading">#</a></h3>
 <section id="identify-the-cluster-number-for-each-order">
 <h4>3.1 Identify the Cluster Number for Each Order<a class="headerlink" href="#identify-the-cluster-number-for-each-order" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
@@ -1023,7 +1153,7 @@ dtype: object
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3.1 ANSWER: Fit K-means with optimal k and assign clusters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit K-means with optimal k and assign clusters</span>
 
 <span class="n">optimal_k</span> <span class="o">=</span> <span class="mi">6</span>
 
@@ -1209,14 +1339,13 @@ dtype: object
 </section>
 <section id="visualize-the-clusters">
 <h4>3.2 Visualize the Clusters<a class="headerlink" href="#visualize-the-clusters" title="Permalink to this heading">#</a></h4>
-<p>Create two visualizations to understand your clusters:</p>
-<ul class="simple">
-<li><p><strong>Visualization 1: Cluster Profile Heatmap</strong></p>
 <ul>
-<li><p>Visualize the cluster profiles using a heatmap to understand the average characteristics of each segment.</p></li>
-<li><p>Step 1: Compute the mean of the four numerical features (<code class="docutils literal notranslate"><span class="pre">basket_size</span></code>, <code class="docutils literal notranslate"><span class="pre">basket_qty</span></code>, <code class="docutils literal notranslate"><span class="pre">freight_ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">product_diversity</span></code>) for each cluster.</p></li>
-<li><p>Step 2: Scale these means (e.g., using <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> to calculate Z-scores) so that different units (price vs. count) can be compared directly.</p></li>
-<li><p>Step 3: Plot the scaled means as a heatmap:</p>
+<li><p><strong>Visualization 1: Cluster Profile Heatmap</strong></p>
+<p>Visualize the cluster profiles using a heatmap to understand the average characteristics of each segment.</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: Compute the mean of the four numerical features (<code class="docutils literal notranslate"><span class="pre">basket_size</span></code>, <code class="docutils literal notranslate"><span class="pre">basket_qty</span></code>, <code class="docutils literal notranslate"><span class="pre">freight_ratio</span></code>, <code class="docutils literal notranslate"><span class="pre">product_diversity</span></code>) for each cluster.</p></li>
+<li><p><strong>Step 2</strong>: Scale these means (e.g., using <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> to calculate Z-scores) so that different units (price vs. count) can be compared directly.</p></li>
+<li><p><strong>Step 3</strong>: Plot the scaled means as a heatmap:</p>
 <ul>
 <li><p>X-axis: Cluster number</p></li>
 <li><p>Y-axis: Feature name</p></li>
@@ -1224,25 +1353,25 @@ dtype: object
 <li><p>Annotation: Display the Z-score values in each cell</p></li>
 </ul>
 </li>
-<li><p>Add a clear title.</p></li>
+<li><p><strong>Step 4</strong>：Add a clear title.</p></li>
 </ul>
 </li>
 <li><p><strong>Visualization 2: Cluster Size Distribution</strong></p>
-<ul>
-<li><p>Create a bar chart showing the number of orders in each cluster.</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: Create a bar chart showing the number of orders in each cluster.</p>
 <ul>
 <li><p>X-axis: Cluster number (0, 1, 2, …)</p></li>
 <li><p>Y-axis: Count of orders</p></li>
 <li><p>This helps you understand if clusters are balanced or if some clusters dominate.</p></li>
 </ul>
 </li>
-<li><p>Add a title and axis labels.</p></li>
+<li><p><strong>Step 2</strong>: Add a title and axis labels.</p></li>
 </ul>
 </li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3.2 ANSWER: Visualization 1 - Cluster profile heatmap</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualization 1 - Cluster profile heatmap</span>
 <span class="c1"># Compute the mean of the four numerical features for each cluster</span>
 <span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;basket_size&#39;</span><span class="p">,</span> <span class="s1">&#39;basket_qty&#39;</span><span class="p">,</span> <span class="s1">&#39;freight_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;product_diversity&#39;</span><span class="p">]</span>
 <span class="n">cluster_means</span> <span class="o">=</span> <span class="n">all_orders_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cluster&#39;</span><span class="p">)[</span><span class="n">num_features</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1280,7 +1409,7 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 3.2 ANSWER: Visualization 2 - Cluster size distribution</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualization 2 - Cluster size distribution</span>
 <span class="c1"># Calculate the number of orders for each cluster</span>
 <span class="n">cluster_counts</span> <span class="o">=</span> <span class="n">all_orders_df</span><span class="p">[</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
 
@@ -1312,16 +1441,28 @@ dtype: object
 <li><p>Which features seem to have the most significant impact on defining the clusters? Why might this be the case?</p></li>
 <li><p>Based on the visualizations that you have generated, comment on the nature of the clusters and what it implies for an e-commerce business</p></li>
 </ul>
-<p><strong>3.2 ANSWER:</strong></p>
+<p><strong>💡Insights</strong></p>
+<p><strong>1. The separation degree of clustering</strong></p>
 <ul class="simple">
-<li><p>The clusters appear well-separated, as each segment is distinctly defined by extreme positive or negative Z-scores in at least one key feature.</p></li>
-<li><p>Features like basket_size, freight_ratio, and product_diversity have the most significant impact, as they strongly capture contrasting purchasing behaviors such as premium spending versus bulk buying.</p></li>
-<li><p>For an e-commerce business, this implies operations should be optimized for dominant low-value orders, while tailored strategies are needed to maximize profitability from high-value niche segments.</p></li>
+<li><p>From the heat map, it can be seen that there is a certain degree of distinction between the clusters, but the boundaries of some clusters (such as 0 and 3) are not clear. While other clusters (such as 1, 2, 4 and 5)are distinctly defined by extreme positive or negative Z-scores in at least one key feature.</p></li>
+</ul>
+<p><strong>2. Most significant impact features</strong></p>
+<ul class="simple">
+<li><p>Features like <code class="docutils literal notranslate"><span class="pre">basket_size</span></code>, <code class="docutils literal notranslate"><span class="pre">freight_ratio</span></code>, and <code class="docutils literal notranslate"><span class="pre">product_diversity</span></code> have significant impact on defining clusters, as they strongly capture contrasting purchasing behaviors such as premium spending (such as 4), bulk buying (such as 5).</p></li>
+</ul>
+<p><strong>3. Cluster implications for e-commerce business</strong></p>
+<ul class="simple">
+<li><p>Cluster 0：Budget-Friendly Shoppers. The small order volume and low shipping fees indicate that they are good at aggregating orders for discounts. These are active users but they are price-sensitive.</p></li>
+<li><p>Cluster 1：Convenience Seekers. The order size is small, but the freight cost accounts for a high proportion. Might be users in remote areas or with urgent needs, who place more emphasis on timeliness rather than cost.</p></li>
+<li><p>Cluster 2：Loyalty Buyers. The extremely low variety of products indicates that they repeatedly purchase a few fixed categories. This suggests that they are loyal users of the brand or the specific product category.</p></li>
+<li><p>Cluster 3：Impulse Buyers. The order is small, the shipping cost is a bit high, but there are various product options. This might be a spur-of-the-moment scattered purchase, rather than waiting to complete a larger order.</p></li>
+<li><p>Cluster 4: Premium Spenders. The basket amounts are significantly higher than the average, and the proportion of shipping fees is extremely low. They are the core source of revenue and profit for the platform.</p></li>
+<li><p>Cluster 5: Bulk Quantity Buyers. Medium-sized basket amounts, but extremely large quantity of goods. This might indicate that they are purchasing multiple items of the same product or purchasing combination packages.</p></li>
 </ul>
 </section>
 </section>
-<section id="market-basket-analysis-association-rule-mining-8-marks">
-<h3>4: Market Basket Analysis (Association Rule Mining) [8 Marks]<a class="headerlink" href="#market-basket-analysis-association-rule-mining-8-marks" title="Permalink to this heading">#</a></h3>
+<section id="task-4-market-basket-analysis-association-rule-mining">
+<h3>Task 4: Market Basket Analysis (Association Rule Mining)<a class="headerlink" href="#task-4-market-basket-analysis-association-rule-mining" title="Permalink to this heading">#</a></h3>
 <section id="context-what-is-market-basket-analysis">
 <h4>4.1 Context: What is Market Basket Analysis?<a class="headerlink" href="#context-what-is-market-basket-analysis" title="Permalink to this heading">#</a></h4>
 <p>Market Basket Analysis is an unsupervised learning technique that identifies which products, categories, or attributes are frequently observed together. In e-commerce, this helps answer questions such as:</p>
@@ -1337,10 +1478,10 @@ dtype: object
 <li><p><strong>Lift</strong>: How much more likely the rule is compared to random chance (&gt; 1 indicates a positive association)</p></li>
 </ul>
 <p>The Apriori algorithm discovers frequent itemsets and then generates association rules from them.</p>
-<p>In this task, you will perform Market Basket Analysis using the categorical features from <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> to discover multi-dimensional associations between product category, payment type, and order size category.</p>
+<p>In this task, we will perform Market Basket Analysis using the categorical features from <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> to discover multi-dimensional associations between product category, payment type, and order size category.</p>
 </section>
-<section id="prepare-transaction-data-1-mark">
-<h4>4.2 Prepare Transaction Data [1 Mark]<a class="headerlink" href="#prepare-transaction-data-1-mark" title="Permalink to this heading">#</a></h4>
+<section id="prepare-transaction-data">
+<h4>4.2 Prepare Transaction Data<a class="headerlink" href="#prepare-transaction-data" title="Permalink to this heading">#</a></h4>
 <p>Convert each order in <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> into a simple “basket” representation.</p>
 <p>Create a Python list called <code class="docutils literal notranslate"><span class="pre">transactions</span></code>, where each element represents one order and contains exactly three string items constructed from that order:</p>
 <ul class="simple">
@@ -1351,9 +1492,9 @@ dtype: object
 <p>After constructing <code class="docutils literal notranslate"><span class="pre">transactions</span></code>, display the first 5 transactions to verify the format.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.2 ANSWER: Create transaction list</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create transaction list</span>
 
-<span class="c1"># pack three columns of data and generate a list of strings with a specific prefix</span>
+<span class="c1"># Pack three columns of data and generate a list of strings with a specific prefix</span>
 <span class="n">transactions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;cat_</span><span class="si">{</span><span class="n">cat</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;pay_</span><span class="si">{</span><span class="n">pay</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;size_</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">cat</span><span class="p">,</span> <span class="n">pay</span><span class="p">,</span> <span class="n">size</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
@@ -1382,8 +1523,8 @@ dtype: object
 </div>
 </div>
 </section>
-<section id="encode-transactions-and-apply-apriori-algorithm-2-marks">
-<h4>4.3 Encode Transactions and Apply Apriori Algorithm [2 Marks]<a class="headerlink" href="#encode-transactions-and-apply-apriori-algorithm-2-marks" title="Permalink to this heading">#</a></h4>
+<section id="encode-transactions-and-apply-apriori-algorithm">
+<h4>4.3 Encode Transactions and Apply Apriori Algorithm<a class="headerlink" href="#encode-transactions-and-apply-apriori-algorithm" title="Permalink to this heading">#</a></h4>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">mlxtend</span></code> library to discover frequent itemsets and generate association rules.</p>
 <ul class="simple">
 <li><p>Step 1: Encode transactions using <code class="docutils literal notranslate"><span class="pre">TransactionEncoder</span></code> and display the shape of the encoded DataFrame.</p></li>
@@ -1392,7 +1533,7 @@ dtype: object
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.3 ANSWER: Step 1 - Encode transactions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1 - Encode transactions</span>
 <span class="c1"># Instantiate encoder</span>
 <span class="n">encoder</span> <span class="o">=</span> <span class="n">TransactionEncoder</span><span class="p">()</span>
 
@@ -1417,7 +1558,7 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.3 ANSWER: Step 2 - Apply Apriori</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 2 - Apply Apriori</span>
 <span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">encoded_df</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== Number of Frequent Itemsets Found ==========&quot;</span><span class="p">)</span>
@@ -1434,7 +1575,7 @@ dtype: object
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.3 ANSWER: Step 3 - Generate association rules</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 3 - Generate association rules</span>
 <span class="n">rules</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;========== Number of Association Rules Generated ==========&quot;</span><span class="p">)</span>
@@ -1450,8 +1591,8 @@ dtype: object
 </div>
 </div>
 </section>
-<section id="extract-and-display-top-10-rules-1-mark">
-<h4>4.4 Extract and Display Top 10 Rules [1 Mark]<a class="headerlink" href="#extract-and-display-top-10-rules-1-mark" title="Permalink to this heading">#</a></h4>
+<section id="extract-and-display-top-10-rules">
+<h4>4.4 Extract and Display Top 10 Rules<a class="headerlink" href="#extract-and-display-top-10-rules" title="Permalink to this heading">#</a></h4>
 <p>Sort the association rules by <strong>lift</strong> in descending order and display the top 10 rules in a table showing:</p>
 <ul class="simple">
 <li><p>Antecedents (left-hand side of rule)</p></li>
@@ -1483,7 +1624,7 @@ dtype: object
 <p>“Customers who purchase <strong>furniture</strong> in <strong>large orders</strong> have a <strong>75.6% probability</strong> (confidence) of paying with a <strong>credit card</strong>. This behavior is <strong>1.84 times more likely</strong> (lift) than the general probability of using a credit card.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 4.4 ANSWER: Display top 10 rules by lift</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display top 10 rules by lift</span>
 
 <span class="c1"># Sort by lift in descending order and take the top 10 rows</span>
 <span class="n">top_10_rules</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -1545,7 +1686,7 @@ dtype: object
       <td>5.328480</td>
     </tr>
     <tr>
-      <th>77</th>
+      <th>76</th>
       <td>(cat_bed_bath_table)</td>
       <td>(size_Medium, pay_credit_card)</td>
       <td>0.016851</td>
@@ -1553,7 +1694,7 @@ dtype: object
       <td>2.023212</td>
     </tr>
     <tr>
-      <th>72</th>
+      <th>73</th>
       <td>(size_Medium, pay_credit_card)</td>
       <td>(cat_bed_bath_table)</td>
       <td>0.016851</td>
@@ -1563,14 +1704,14 @@ dtype: object
     <tr>
       <th>75</th>
       <td>(size_Medium)</td>
-      <td>(pay_credit_card, cat_bed_bath_table)</td>
+      <td>(cat_bed_bath_table, pay_credit_card)</td>
       <td>0.016851</td>
       <td>0.171693</td>
       <td>1.757439</td>
     </tr>
     <tr>
       <th>74</th>
-      <td>(pay_credit_card, cat_bed_bath_table)</td>
+      <td>(cat_bed_bath_table, pay_credit_card)</td>
       <td>(size_Medium)</td>
       <td>0.016851</td>
       <td>0.172490</td>
@@ -1578,18 +1719,18 @@ dtype: object
     </tr>
     <tr>
       <th>27</th>
-      <td>(cat_furniture_decor)</td>
-      <td>(size_Medium)</td>
-      <td>0.012660</td>
-      <td>0.171696</td>
-      <td>1.749354</td>
-    </tr>
-    <tr>
-      <th>26</th>
       <td>(size_Medium)</td>
       <td>(cat_furniture_decor)</td>
       <td>0.012660</td>
       <td>0.128990</td>
+      <td>1.749354</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>(cat_furniture_decor)</td>
+      <td>(size_Medium)</td>
+      <td>0.012660</td>
+      <td>0.171696</td>
       <td>1.749354</td>
     </tr>
     <tr>
@@ -1612,24 +1753,9 @@ dtype: object
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="interpretation-3-4-sentences-3-marks">
-<h4>4.5 Interpretation (3-4 sentences) [3 Marks]<a class="headerlink" href="#interpretation-3-4-sentences-3-marks" title="Permalink to this heading">#</a></h4>
-<p>Write a brief interpretation explaining:</p>
-<ul class="simple">
-<li><p>What the top 3 unique rules tell you about customer behavior</p></li>
-<li><p>Which combinations are most strongly associated (highest lift)</p></li>
-<li><p>Why these associations might exist (business intuition)</p></li>
-<li><p>Change the min_support value to 0.005 and 0.3 and comment on any changes in the rules identified</p></li>
-</ul>
-<p><strong>4.5 ANSWER:</strong></p>
-<p><em>The top rules show that furniture_decor is most strongly associated with size_Large orders (highest lift of 5.3), which makes sense because furniture items are naturally bulky and expensive. Another key behavior is that customers buying bed_bath_table items usually place size_Medium orders and prefer paying with a credit_card (lift &gt; 2.0). If we decrease min_support to 0.005, we will get many more rules by including rarer purchases, but if we increase it to 0.3, we will likely find zero rules because it is too strict for any combination to appear in 30% of all orders.</em></p>
-</section>
-<section id="business-recommendations-2-3-bullet-points-1-mark">
-<h4>4.6 Business Recommendations (2-3 bullet points) [1 Mark]<a class="headerlink" href="#business-recommendations-2-3-bullet-points-1-mark" title="Permalink to this heading">#</a></h4>
-<p>Based on the discovered associations, provide actionable business recommendations for an e-commerce firm.</p>
-<p><strong>4.6 ANSWER:</strong></p>
-<p><em>[Write your business recommendations here as bullet points]</em></p>
+<p><strong>💡Interpretations:</strong></p>
+<p>The top rules show that furniture_decor is most strongly associated with size_Large orders (highest lift of 5.3), which makes sense because furniture items are naturally bulky and expensive. Another key behavior is that customers buying bed_bath_table items usually place size_Medium orders and prefer paying with a credit_card (lift &gt; 2.0). If we decrease min_support to 0.005, we will get many more rules by including rarer purchases, but if we increase it to 0.3, we will likely find zero rules because it is too strict for any combination to appear in 30% of all orders.</p>
+<p><strong>💡Business Recommendations:</strong></p>
 <ul class="simple">
 <li><p>Optimize Shipping for Furniture: Since furniture purchases are very strongly associated with large orders (lift &gt; 5.0), the company should negotiate better rates with heavy-freight shipping partners to reduce costs and improve profit margins.</p></li>
 <li><p>Credit Card Promotions for Home Goods: There is a strong link (lift &gt; 2.0) between bed_bath_table items and credit card payments. The business can partner with credit card companies to offer discounts or cashback for the home goods category to encourage more sales.</p></li>
@@ -1645,49 +1771,6 @@ dtype: object
 </section>
 </section>
 </section>
-<hr class="docutils" />
-<section id="task-report-5-marks">
-<h2>Task: Report (5 Marks)<a class="headerlink" href="#task-report-5-marks" title="Permalink to this heading">#</a></h2>
-<section id="id1">
-<h3>Objective<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<p>(Note: No separate report submission is required.) The report comprises the write-up that you have been working on within this iPython notebook. The write-up/report should clearly describe the steps performed and the reasoning behind each processing done for all the tasks from Assignment 1 until Association mining above.</p>
-</section>
-<section id="write-up-report">
-<h3>1: Write-up / Report<a class="headerlink" href="#write-up-report" title="Permalink to this heading">#</a></h3>
-<p>Describe the steps performed and the reasoning behind each processing step for all tasks you have worked on so far:</p>
-<ul class="simple">
-<li><p>Assignment 1 (data cleaning and preprocessing)</p></li>
-<li><p>Assignment 2 (supervised learning)</p></li>
-<li><p>Assignment 3 (unsupervised learning)</p></li>
-</ul>
-<p>Include your explanations inline near the cells where processing is done, and keep your descriptions concise but clear. Connect each analysis step to business objectives where appropriate.</p>
-</section>
-<hr class="docutils" />
-<section id="publish-the-report">
-<h3>2: Publish the Report<a class="headerlink" href="#publish-the-report" title="Permalink to this heading">#</a></h3>
-<p>Publish the report as a read-only <a class="reference external" href="http://github.io">github.io</a> static page.</p>
-<ul class="simple">
-<li><p>Note: this differs from setting up a GitHub repository with your iPython notebook in it.</p></li>
-<li><p>Convert your notebook to HTML and host it on GitHub Pages (e.g., using nbconvert or Jupyter Book).</p></li>
-</ul>
-<p>Ensure the page is publicly accessible and provide the URL in your Canvas submission.</p>
-<p><strong>Your published URL:</strong></p>
-<p><em>[Add your <a class="reference external" href="http://github.io">github.io</a> URL here once published]</em></p>
-</section>
-</section>
-</section>
-<hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="end-of-assignment-3">
-<h1>End of Assignment 3<a class="headerlink" href="#end-of-assignment-3" title="Permalink to this heading">#</a></h1>
-<p><strong>Before submission, ensure:</strong></p>
-<ol class="arabic simple">
-<li><p>All code cells execute without errors</p></li>
-<li><p>All markdown cells contain your written explanations</p></li>
-<li><p>Visualizations are clear and properly labeled</p></li>
-<li><p>Your notebook tells a coherent story from start to finish</p></li>
-<li><p>Your <a class="reference external" href="http://github.io">github.io</a> page is published and URL is provided</p></li>
-</ol>
-<p><strong>Good luck!</strong></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1745,49 +1828,36 @@ dtype: object
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project (Assignment 3): Unsupervised Learning (E-Commerce Orders)</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-your-cleaned-dataset-from-assignment-1">Load Your Cleaned Dataset from Assignment 1</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-unsupervised-learning">Task: Unsupervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-cleaned-dataset-from-chapter-1">Load Cleaned Dataset from Chapter 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">Unsupervised Learning</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preprocessing-for-unsupervised-learning-1-mark">1: Data Preprocessing for Unsupervised Learning [1 Mark]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-1-data-preprocessing-for-unsupervised-learning">Task 1: Data Preprocessing for Unsupervised Learning</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-all-orders-df-one-row-per-order">1.1 Create <code class="docutils literal notranslate"><span class="pre">all_orders_df</span></code> (one row per order)</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-orders-analysis-df">1.2 Create <code class="docutils literal notranslate"><span class="pre">orders_analysis_df</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determine-the-optimal-number-of-clusters-3-marks">2: Determine the Optimal Number of Clusters [3 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-2-determine-the-optimal-number-of-clusters">Task 2: Determine the Optimal Number of Clusters</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#run-k-means-for-different-cluster-numbers">2.1 Run K-Means for Different Cluster Numbers</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elbow-method-for-optimal-clusters">2.2 Elbow Method for Optimal Clusters</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-analysis-and-visualization-3-marks">3: Cluster Analysis and Visualization [3 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-3-cluster-analysis-and-visualization">Task 3: Cluster Analysis and Visualization</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-the-cluster-number-for-each-order">3.1 Identify the Cluster Number for Each Order</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-the-clusters">3.2 Visualize the Clusters</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#market-basket-analysis-association-rule-mining-8-marks">4: Market Basket Analysis (Association Rule Mining) [8 Marks]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#task-4-market-basket-analysis-association-rule-mining">Task 4: Market Basket Analysis (Association Rule Mining)</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#context-what-is-market-basket-analysis">4.1 Context: What is Market Basket Analysis?</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-transaction-data-1-mark">4.2 Prepare Transaction Data [1 Mark]</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encode-transactions-and-apply-apriori-algorithm-2-marks">4.3 Encode Transactions and Apply Apriori Algorithm [2 Marks]</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-and-display-top-10-rules-1-mark">4.4 Extract and Display Top 10 Rules [1 Mark]</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation-3-4-sentences-3-marks">4.5 Interpretation (3-4 sentences) [3 Marks]</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#business-recommendations-2-3-bullet-points-1-mark">4.6 Business Recommendations (2-3 bullet points) [1 Mark]</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-transaction-data">4.2 Prepare Transaction Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#encode-transactions-and-apply-apriori-algorithm">4.3 Encode Transactions and Apply Apriori Algorithm</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extract-and-display-top-10-rules">4.4 Extract and Display Top 10 Rules</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tips">Tips</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-report-5-marks">Task: Report (5 Marks)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Objective</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-up-report">1: Write-up / Report</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-the-report">2: Publish the Report</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#end-of-assignment-3">End of Assignment 3</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>
