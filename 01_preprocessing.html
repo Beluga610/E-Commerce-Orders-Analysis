@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders &#8212; My Jupyter Book</title>
+    <title>Chapter 1: Data Preprocessing and EDA for E‑Commerce Orders &#8212; My Jupyter Book</title>
   
   
   
@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders
+                    Chapter 1: Data Preprocessing and EDA for E‑Commerce Orders
                 </a>
             </li>
         </ul>
@@ -311,7 +311,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders</h1>
+    <h1>Chapter 1: Data Preprocessing and EDA for E‑Commerce Orders</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -321,22 +321,21 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitted-by">Submitted by</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preprocessing-10-marks">Part 1: Data Preprocessing (10 marks)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-joining-4-marks">1.1 Data Loading &amp; Joining (4 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preprocessing">Part 1: Data Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-joining">1.1 Data Loading &amp; Joining</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-csv-files">Load the CSV files</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-each-table">Inspect each table</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#join-the-tables-on-order-id-to-create-a-single-order-level-dataframe">Join the tables on <code class="docutils literal notranslate"><span class="pre">order_id</span></code> to create a single order-level DataFrame</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-3-marks">1.2 Data Cleaning (3 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">1.2 Data Cleaning</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">Handle missing values</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-clearly-invalid-numeric-records">Remove clearly invalid numeric records</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-cleanliness-and-key-uniqueness">Check cleanliness and key uniqueness</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transformation-3-marks">1.3 Data Transformation (3 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transformation">1.3 Data Transformation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sanity-checks-on-counts-and-values">Sanity checks on counts and values</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-value-per-item">Create <code class="docutils literal notranslate"><span class="pre">order_value_per_item</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-size-category">Create <code class="docutils literal notranslate"><span class="pre">order_size_category</span></code></a></li>
@@ -349,22 +348,22 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-eda-data-visualization-4-marks">Part 2: EDA &amp; Data Visualization (4 marks)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-transformed-dataset">2.0 Load Transformed Dataset</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reload-csv">2.0 Reload CSV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-eda-data-visualization">Part 2: EDA &amp; Data Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-transformed-dataset">2. Load Transformed Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reload-csv">Reload CSV</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-categories-and-payment-types-1-mark">2.1 Unique Categories and Payment Types (1 mark)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart-of-orders-by-product-category-2-marks">2.2 Bar Chart of Orders by Product Category (2 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-categories-and-payment-types">2.1 Unique Categories and Payment Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart-of-orders-by-product-category">2.2 Bar Chart of Orders by Product Category</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-bar-chart">Create bar chart</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-interpretation">Brief interpretation</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot-order-value-vs-number-of-items-2-mark">2.3 Box Plot: Order Value vs Number of Items (2 mark)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">💡Observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot-order-value-vs-number-of-items">2.3 Box Plot: Order Value vs Number of Items</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-box-plot">Create box plot</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Brief interpretation</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">💡 observations</a></li>
 </ul>
 </li>
 </ul>
@@ -378,48 +377,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="assignment-1-data-preprocessing-and-eda-for-ecommerce-orders">
-<h1>Assignment 1: Data Preprocessing and EDA for E‑Commerce Orders<a class="headerlink" href="#assignment-1-data-preprocessing-and-eda-for-ecommerce-orders" title="Permalink to this heading">#</a></h1>
-<p>This notebook is your working template for <strong>Assignment 1</strong>.</p>
-<p>You will:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-1-data-preprocessing-and-eda-for-ecommerce-orders">
+<h1>Chapter 1: Data Preprocessing and EDA for E‑Commerce Orders<a class="headerlink" href="#chapter-1-data-preprocessing-and-eda-for-ecommerce-orders" title="Permalink to this heading">#</a></h1>
+<p>We will:</p>
 <ul class="simple">
 <li><p>Load <strong>four tables</strong> (<code class="docutils literal notranslate"><span class="pre">orders</span></code>, <code class="docutils literal notranslate"><span class="pre">order_items</span></code>, <code class="docutils literal notranslate"><span class="pre">order_shipping</span></code>, <code class="docutils literal notranslate"><span class="pre">payments</span></code>).</p></li>
 <li><p>Join them into a single order-level dataset.</p></li>
 <li><p>Clean and transform the data.</p></li>
 <li><p>Perform basic EDA and visualization.</p></li>
 </ul>
-<p>Work <strong>top-to-bottom</strong>. Complete each sub-part in the order they appear before proceeding.</p>
-<section id="submitted-by">
-<h2>Submitted by<a class="headerlink" href="#submitted-by" title="Permalink to this heading">#</a></h2>
-<p>Group number on Canvas:</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Student ID (AxxxxxxxZ)</p></th>
-<th class="head"><p>NUSNet ID (exxxxxxx)</p></th>
-<th class="head"><p>Name (as it appears on Canvas)</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Member 1 ID</p></td>
-<td><p>Member 1 NUSNet</p></td>
-<td><p>Member 1 Name</p></td>
-</tr>
-<tr class="row-odd"><td><p>Member 2 ID</p></td>
-<td><p>Member 2 NUSNet</p></td>
-<td><p>Member 2 Name</p></td>
-</tr>
-<tr class="row-even"><td><p>Member 3 ID</p></td>
-<td><p>Member 3 NUSNet</p></td>
-<td><p>Member 3 Name</p></td>
-</tr>
-<tr class="row-odd"><td><p>Member 4 ID</p></td>
-<td><p>Member 4 NUSNet</p></td>
-<td><p>Member 4 Name</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
 <section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
 <p>Run the cell below to import the required Python packages.</p>
@@ -438,14 +404,14 @@ document.write(`
 </div>
 </section>
 <hr class="docutils" />
-<section id="part-1-data-preprocessing-10-marks">
-<h2>Part 1: Data Preprocessing (10 marks)<a class="headerlink" href="#part-1-data-preprocessing-10-marks" title="Permalink to this heading">#</a></h2>
-<section id="data-loading-joining-4-marks">
-<h3>1.1 Data Loading &amp; Joining (4 marks)<a class="headerlink" href="#data-loading-joining-4-marks" title="Permalink to this heading">#</a></h3>
+<section id="part-1-data-preprocessing">
+<h2>Part 1: Data Preprocessing<a class="headerlink" href="#part-1-data-preprocessing" title="Permalink to this heading">#</a></h2>
+<section id="data-loading-joining">
+<h3>1.1 Data Loading &amp; Joining<a class="headerlink" href="#data-loading-joining" title="Permalink to this heading">#</a></h3>
 <p>We first load each table, inspect it, and then join them into a single DataFrame.</p>
 <section id="load-the-csv-files">
 <h4>Load the CSV files<a class="headerlink" href="#load-the-csv-files" title="Permalink to this heading">#</a></h4>
-<p><strong>Task:</strong></p>
+<p><strong>objectives:</strong></p>
 <ul class="simple">
 <li><p>Dowload the four CSV files from canvas and upload them under the ‘files’ tab for this colab instance</p></li>
 <li><p>Load the four CSV files using <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code> into:</p>
@@ -457,11 +423,9 @@ document.write(`
 </ul>
 </li>
 </ul>
-<p>Update the filenames/paths if necessary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: load the CSV files</span>
-<span class="n">df_orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/orders.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_orders</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/orders.csv&#39;</span><span class="p">)</span>
 <span class="n">df_order_items</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/order_items.csv&#39;</span><span class="p">)</span>
 <span class="n">df_shipping</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/order_shipping.csv&#39;</span><span class="p">)</span>
 <span class="n">df_payments</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/payments.csv&#39;</span><span class="p">)</span>
@@ -479,7 +443,7 @@ document.write(`
 </section>
 <section id="inspect-each-table">
 <h4>Inspect each table<a class="headerlink" href="#inspect-each-table" title="Permalink to this heading">#</a></h4>
-<p><strong>Task:</strong></p>
+<p><strong>objectives:</strong></p>
 <ul class="simple">
 <li><p>For <strong>each</strong> DataFrame, display:</p>
 <ul>
@@ -488,10 +452,9 @@ document.write(`
 </ul>
 </li>
 </ul>
-<p>This helps you understand the raw structure before joining.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: inspect the DataFrames</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inspect the DataFrames</span>
 <span class="n">dfs</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Orders&quot;</span><span class="p">:</span> <span class="n">df_orders</span><span class="p">,</span>
     <span class="s2">&quot;Order Items&quot;</span><span class="p">:</span> <span class="n">df_order_items</span><span class="p">,</span>
@@ -792,7 +755,7 @@ Shape: (100000, 2)
 </section>
 <section id="join-the-tables-on-order-id-to-create-a-single-order-level-dataframe">
 <h4>Join the tables on <code class="docutils literal notranslate"><span class="pre">order_id</span></code> to create a single order-level DataFrame<a class="headerlink" href="#join-the-tables-on-order-id-to-create-a-single-order-level-dataframe" title="Permalink to this heading">#</a></h4>
-<p><strong>Task:</strong></p>
+<p><strong>objectives:</strong></p>
 <ul class="simple">
 <li><p>Perform <strong>inner joins</strong> on <code class="docutils literal notranslate"><span class="pre">order_id</span></code> so that only orders present in <strong>all</strong> tables remain.</p></li>
 <li><p>Join order tables in this order:</p>
@@ -807,7 +770,7 @@ Shape: (100000, 2)
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: join the tables</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># join the tables</span>
 <span class="n">df_merge_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_orders</span><span class="p">,</span> <span class="n">df_order_items</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
 <span class="n">df_merge_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_merge_1</span><span class="p">,</span> <span class="n">df_shipping</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
 <span class="n">df_orders_full</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_merge_2</span><span class="p">,</span> <span class="n">df_payments</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;order_id&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">)</span>
@@ -954,22 +917,21 @@ Shape: (100000, 2)
 </section>
 </section>
 <hr class="docutils" />
-<section id="data-cleaning-3-marks">
-<h3>1.2 Data Cleaning (3 marks)<a class="headerlink" href="#data-cleaning-3-marks" title="Permalink to this heading">#</a></h3>
+<section id="data-cleaning">
+<h3>1.2 Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this heading">#</a></h3>
 <p>We now clean <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code> so it is ready for analysis.</p>
 <section id="handle-missing-values">
 <h4>Handle missing values<a class="headerlink" href="#handle-missing-values" title="Permalink to this heading">#</a></h4>
-<p><strong>Task:</strong></p>
+<p><strong>objectives:</strong></p>
 <ul class="simple">
 <li><p>For <strong>numerical</strong> columns: replace missing values with the <strong>median</strong> of that column.</p></li>
 <li><p>For <strong>categorical</strong> columns: replace missing values with the <strong>mode</strong> (most frequent value).</p></li>
 <li><p>Drop any rows where <code class="docutils literal notranslate"><span class="pre">order_id</span></code> or <code class="docutils literal notranslate"><span class="pre">payment_type</span></code> is missing (if any remain)</p></li>
 </ul>
-<p>Work directly on <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy._core</span><span class="w"> </span><span class="kn">import</span> <span class="n">numeric</span>
-<span class="c1"># ANSWER: Handle missing values</span>
+<span class="c1"># Handle missing values</span>
 
 <span class="c1"># Separate numeric and categorical columns</span>
 <span class="n">numeric_cols</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span>
@@ -1002,7 +964,7 @@ Shape: (100000, 2)
 </section>
 <section id="remove-clearly-invalid-numeric-records">
 <h4>Remove clearly invalid numeric records<a class="headerlink" href="#remove-clearly-invalid-numeric-records" title="Permalink to this heading">#</a></h4>
-<p><strong>Task:</strong></p>
+<p><strong>objectives:</strong></p>
 <ul class="simple">
 <li><p>Remove rows where:</p>
 <ul>
@@ -1015,7 +977,7 @@ Shape: (100000, 2)
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: filter invalid numeric records</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># filter invalid numeric records</span>
 <span class="n">condition</span> <span class="o">=</span> <span class="p">(</span>
     <span class="p">(</span><span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span>
     <span class="p">(</span><span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;order_total_value&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span>
@@ -1048,7 +1010,7 @@ Shape after filtering invalid records: (89175, 15)
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: final cleaning checks</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># final cleaning checks</span>
 
 <span class="c1"># Confirm no null values</span>
 <span class="n">total_nulls</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -1070,8 +1032,8 @@ Is order_id unique? True
 </section>
 </section>
 <hr class="docutils" />
-<section id="data-transformation-3-marks">
-<h3>1.3 Data Transformation (3 marks)<a class="headerlink" href="#data-transformation-3-marks" title="Permalink to this heading">#</a></h3>
+<section id="data-transformation">
+<h3>1.3 Data Transformation<a class="headerlink" href="#data-transformation" title="Permalink to this heading">#</a></h3>
 <p>Next, we perform sanity checks and create new features that will be useful later.</p>
 <section id="sanity-checks-on-counts-and-values">
 <h4>Sanity checks on counts and values<a class="headerlink" href="#sanity-checks-on-counts-and-values" title="Permalink to this heading">#</a></h4>
@@ -1086,7 +1048,7 @@ Is order_id unique? True
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: apply sanity checks</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># apply sanity checks</span>
 <span class="c1"># condition 1: Total items count must be &gt;= count of unique products</span>
 <span class="n">cond_items</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_unique_products&#39;</span><span class="p">]</span>
 
@@ -1115,7 +1077,7 @@ Is order_id unique? True
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: create order_value_per_item</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create order_value_per_item</span>
 <span class="c1"># Calculate value per item</span>
 <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;order_value_per_item&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;total_item_price&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df_orders_full</span><span class="p">[</span><span class="s1">&#39;num_items&#39;</span><span class="p">]</span>
 
@@ -1198,7 +1160,7 @@ Is order_id unique? True
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: create order_size_category</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create order_size_category</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">order_size_category</span><span class="p">(</span><span class="n">num_items</span><span class="p">):</span>
   <span class="k">if</span> <span class="n">num_items</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
     <span class="k">return</span> <span class="s1">&#39;Small&#39;</span>
@@ -1240,11 +1202,11 @@ Name: count, dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: final transformation summary</span>
-<span class="c1"># 1. Confirm no null values</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># final transformation summary</span>
+<span class="c1"># Confirm no null values</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Any nulls left? </span><span class="si">{</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="c1"># 2. Display summary</span>
+<span class="c1"># Display summary</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Final Shape: </span><span class="si">{</span><span class="n">df_orders_full</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1436,11 +1398,11 @@ memory usage: 6.4+ MB
 <h4>1.4A Save cleaned dataset<a class="headerlink" href="#a-save-cleaned-dataset" title="Permalink to this heading">#</a></h4>
 <p><strong>Task:</strong></p>
 <ul class="simple">
-<li><p>Save <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code> as <code class="docutils literal notranslate"><span class="pre">ecommerce_orders_cleaned.csv</span></code> (without the index).</p></li>
+<li><p>Save <code class="docutils literal notranslate"><span class="pre">df_orders_full</span></code> as <code class="docutils literal notranslate"><span class="pre">ecommerce_orders_cleaned.csv</span></code> .</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: save to CSV</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># save to CSV</span>
 <span class="c1"># Save the dataframe to a CSV file, excluding the index</span>
 <span class="n">df_orders_full</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;ecommerce_orders_cleaned.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -1458,13 +1420,13 @@ memory usage: 6.4+ MB
 </section>
 </section>
 <hr class="docutils" />
-<section id="part-2-eda-data-visualization-4-marks">
-<h2>Part 2: EDA &amp; Data Visualization (4 marks)<a class="headerlink" href="#part-2-eda-data-visualization-4-marks" title="Permalink to this heading">#</a></h2>
+<section id="part-2-eda-data-visualization">
+<h2>Part 2: EDA &amp; Data Visualization<a class="headerlink" href="#part-2-eda-data-visualization" title="Permalink to this heading">#</a></h2>
 <p>We now reload the cleaned dataset and explore it.</p>
 <section id="load-transformed-dataset">
-<h3>2.0 Load Transformed Dataset<a class="headerlink" href="#load-transformed-dataset" title="Permalink to this heading">#</a></h3>
+<h3>2. Load Transformed Dataset<a class="headerlink" href="#load-transformed-dataset" title="Permalink to this heading">#</a></h3>
 <section id="reload-csv">
-<h4>2.0 Reload CSV<a class="headerlink" href="#reload-csv" title="Permalink to this heading">#</a></h4>
+<h4>Reload CSV<a class="headerlink" href="#reload-csv" title="Permalink to this heading">#</a></h4>
 <p><strong>Task:</strong></p>
 <ul class="simple">
 <li><p>Load <code class="docutils literal notranslate"><span class="pre">ecommerce_orders_cleaned.csv</span></code> into <code class="docutils literal notranslate"><span class="pre">df_orders_cleaned</span></code>.</p></li>
@@ -1472,8 +1434,8 @@ memory usage: 6.4+ MB
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: load cleaned dataset</span>
-<span class="n">df_orders_cleaned</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;ecommerce_orders_cleaned.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load cleaned dataset</span>
+<span class="n">df_orders_cleaned</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ecommerce_orders_cleaned.csv&#39;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape of df_orders_cleaned: </span><span class="si">{</span><span class="n">df_orders_cleaned</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">df_orders_cleaned</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -1628,8 +1590,8 @@ memory usage: 6.4+ MB
 </div>
 </section>
 </section>
-<section id="unique-categories-and-payment-types-1-mark">
-<h3>2.1 Unique Categories and Payment Types (1 mark)<a class="headerlink" href="#unique-categories-and-payment-types-1-mark" title="Permalink to this heading">#</a></h3>
+<section id="unique-categories-and-payment-types">
+<h3>2.1 Unique Categories and Payment Types<a class="headerlink" href="#unique-categories-and-payment-types" title="Permalink to this heading">#</a></h3>
 <p><strong>Task:</strong></p>
 <ul class="simple">
 <li><p>Compute the number of unique values in <code class="docutils literal notranslate"><span class="pre">top_product_category</span></code> and <code class="docutils literal notranslate"><span class="pre">payment_type</span></code>.</p></li>
@@ -1642,7 +1604,7 @@ memory usage: 6.4+ MB
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: unique counts and top values</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># unique counts and top values</span>
 <span class="c1"># Compute number of unique values</span>
 <span class="n">unique_cat</span> <span class="o">=</span> <span class="n">df_orders_cleaned</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 <span class="n">unique_payment</span> <span class="o">=</span> <span class="n">df_orders_cleaned</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
@@ -1686,8 +1648,8 @@ Name: count, dtype: int64
 </div>
 </div>
 </section>
-<section id="bar-chart-of-orders-by-product-category-2-marks">
-<h3>2.2 Bar Chart of Orders by Product Category (2 marks)<a class="headerlink" href="#bar-chart-of-orders-by-product-category-2-marks" title="Permalink to this heading">#</a></h3>
+<section id="bar-chart-of-orders-by-product-category">
+<h3>2.2 Bar Chart of Orders by Product Category<a class="headerlink" href="#bar-chart-of-orders-by-product-category" title="Permalink to this heading">#</a></h3>
 <section id="create-bar-chart">
 <h4>Create bar chart<a class="headerlink" href="#create-bar-chart" title="Permalink to this heading">#</a></h4>
 <p><strong>Task:</strong></p>
@@ -1697,7 +1659,7 @@ Name: count, dtype: int64
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: bar chart of product categories</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># bar chart of product categories</span>
 <span class="c1"># Calculate counts for each category and sort them</span>
 <span class="n">cat_counts</span> <span class="o">=</span> <span class="n">df_orders_cleaned</span><span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">cat_counts</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;top_product_category&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]</span>
@@ -1716,7 +1678,7 @@ Name: count, dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2421/2921509209.py:8: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2295/3831612754.py:8: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
 
@@ -1727,18 +1689,13 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </div>
 </div>
 </section>
-<section id="brief-interpretation">
-<h4>Brief interpretation<a class="headerlink" href="#brief-interpretation" title="Permalink to this heading">#</a></h4>
-<p><strong>Task:</strong></p>
-<ul class="simple">
-<li><p>In 2–3 sentences, describe any trends you see (e.g., which categories dominate, whether the distribution is skewed, etc.).</p></li>
-</ul>
-<p><em>Write your observations here.</em></p>
+</section>
+<section id="observations">
+<h3>💡Observations<a class="headerlink" href="#observations" title="Permalink to this heading">#</a></h3>
 <p>The bar chart shows that <strong>bed_bath_table</strong> and <strong>health_beauty</strong> are the most popular product categories, accounting for a significant portion of the orders. The distribution is <strong>skewed</strong>, with a few top categories dominating the sales, while many other categories have relatively low order counts.</p>
 </section>
-</section>
-<section id="box-plot-order-value-vs-number-of-items-2-mark">
-<h3>2.3 Box Plot: Order Value vs Number of Items (2 mark)<a class="headerlink" href="#box-plot-order-value-vs-number-of-items-2-mark" title="Permalink to this heading">#</a></h3>
+<section id="box-plot-order-value-vs-number-of-items">
+<h3>2.3 Box Plot: Order Value vs Number of Items<a class="headerlink" href="#box-plot-order-value-vs-number-of-items" title="Permalink to this heading">#</a></h3>
 <section id="create-box-plot">
 <h4>Create box plot<a class="headerlink" href="#create-box-plot" title="Permalink to this heading">#</a></h4>
 <p><strong>Task:</strong></p>
@@ -1753,7 +1710,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSWER: box plot order_total_value vs num_items</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># box plot order_total_value vs num_items</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># Create Box Plot</span>
@@ -1769,7 +1726,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2421/3749998017.py:5: FutureWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2295/3686570251.py:5: FutureWarning: 
 
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
@@ -1780,15 +1737,10 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </div>
 </div>
 </section>
-<section id="id1">
-<h4>Brief interpretation<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
-<p><strong>Task:</strong></p>
-<ul class="simple">
-<li><p>In 2–3 sentences, describe how order value changes as the number of items increases (e.g., linear trend, diminishing returns, many outliers, etc.).</p></li>
-</ul>
-<p><em>Write your observations here.</em></p>
-<p>The median order total value increases as the number of items increases. However, the spread of order values also becomes larger for higher item counts. There are several outliers, particularly for orders with a small number of items, indicating some high-value single purchases.</p>
 </section>
+<section id="id1">
+<h3>💡 observations<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>The median order total value increases as the number of items increases. However, the spread of order values also becomes larger for higher item counts. There are several outliers, particularly for orders with a small number of items, indicating some high-value single purchases.</p>
 </section>
 </section>
 <div class="toctree-wrapper compound">
@@ -1850,22 +1802,21 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitted-by">Submitted by</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preprocessing-10-marks">Part 1: Data Preprocessing (10 marks)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-joining-4-marks">1.1 Data Loading &amp; Joining (4 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preprocessing">Part 1: Data Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-joining">1.1 Data Loading &amp; Joining</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-csv-files">Load the CSV files</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-each-table">Inspect each table</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#join-the-tables-on-order-id-to-create-a-single-order-level-dataframe">Join the tables on <code class="docutils literal notranslate"><span class="pre">order_id</span></code> to create a single order-level DataFrame</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-3-marks">1.2 Data Cleaning (3 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning">1.2 Data Cleaning</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">Handle missing values</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-clearly-invalid-numeric-records">Remove clearly invalid numeric records</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#check-cleanliness-and-key-uniqueness">Check cleanliness and key uniqueness</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transformation-3-marks">1.3 Data Transformation (3 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transformation">1.3 Data Transformation</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sanity-checks-on-counts-and-values">Sanity checks on counts and values</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-value-per-item">Create <code class="docutils literal notranslate"><span class="pre">order_value_per_item</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-order-size-category">Create <code class="docutils literal notranslate"><span class="pre">order_size_category</span></code></a></li>
@@ -1878,22 +1829,22 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-eda-data-visualization-4-marks">Part 2: EDA &amp; Data Visualization (4 marks)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-transformed-dataset">2.0 Load Transformed Dataset</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reload-csv">2.0 Reload CSV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-eda-data-visualization">Part 2: EDA &amp; Data Visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-transformed-dataset">2. Load Transformed Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reload-csv">Reload CSV</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-categories-and-payment-types-1-mark">2.1 Unique Categories and Payment Types (1 mark)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart-of-orders-by-product-category-2-marks">2.2 Bar Chart of Orders by Product Category (2 marks)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-categories-and-payment-types">2.1 Unique Categories and Payment Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart-of-orders-by-product-category">2.2 Bar Chart of Orders by Product Category</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-bar-chart">Create bar chart</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#brief-interpretation">Brief interpretation</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot-order-value-vs-number-of-items-2-mark">2.3 Box Plot: Order Value vs Number of Items (2 mark)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observations">💡Observations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot-order-value-vs-number-of-items">2.3 Box Plot: Order Value vs Number of Items</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#create-box-plot">Create box plot</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Brief interpretation</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">💡 observations</a></li>
 </ul>
 </li>
 </ul>
