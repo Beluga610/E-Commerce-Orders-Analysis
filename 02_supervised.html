@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Assignment 2: Supervised Learning Techniques for E-Commerce Orders &#8212; My Jupyter Book</title>
+    <title>Chapter 2: Supervised Learning Techniques for E-Commerce Orders &#8212; My Jupyter Book</title>
   
   
   
@@ -168,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Assignment 2: Supervised Learning Techniques for E-Commerce Orders</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 2: Supervised Learning Techniques for E-Commerce Orders</a></li>
 
 
 <li class="toctree-l1"><a class="reference internal" href="03_unsupervised.html">Chapter 3: Unsupervised Learning (E-Commerce Orders)</a></li>
@@ -310,7 +310,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Assignment 2: Supervised Learning Techniques for E-Commerce Orders</h1>
+    <h1>Chapter 2: Supervised Learning Techniques for E-Commerce Orders</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -320,27 +320,29 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Assignment 2: Supervised Learning Techniques for E-Commerce Orders</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 2: Supervised Learning Techniques for E-Commerce Orders</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-will">We will:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-global-random-state">Define Global Random State</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preparation-10-marks">Part 1: Data Preparation [10 Marks]</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-and-splitting-2-marks">1.1 Data Loading and Splitting [2 Marks]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-categorical-variables-4-marks">1.2 Handling Categorical Variables [4 Marks]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-numerical-variables-4-marks">1.3 Handling Numerical Variables [4 Marks]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preparation">Part 1: Data Preparation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-and-splitting">1.1 Data Loading and Splitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-categorical-variables">1.2 Handling Categorical Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-numerical-variables">1.3 Handling Numerical Variables</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-applying-machine-learning-models-20-marks">Part 2: Applying Machine Learning Models [20 Marks]</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-applying-machine-learning-models">Part 2: Applying Machine Learning Models</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training">2.1 Model Training</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-3-marks">2.1.1 Logistic Regression [3 Marks]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees-3-marks">2.1.2 Decision Trees [3 Marks]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ensemble-methods-3-marks">2.1.3 Kernel &amp; Ensemble Methods [3 Marks]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">2.1.1 Logistic Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees">2.1.2 Decision Trees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">2.1.3 Random Forest</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-visualization-4-marks">2.2 Evaluation &amp; Visualization [4 Marks]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection-final-recommendation-7-marks">2.3 Model Selection &amp; Final Recommendation [7 Marks]</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-recommendation">Final Recommendation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-visualization">2.2 Evaluation &amp; Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection-final-recommendation">2.3 Model Selection &amp; Final Recommendation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-model-recommendation">Final Model Recommendation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-explainability-interpretability">Model Explainability/Interpretability</a></li>
 </ul>
 </li>
@@ -359,19 +361,22 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="assignment-2-supervised-learning-techniques-for-e-commerce-orders">
-<h1>Assignment 2: Supervised Learning Techniques for E-Commerce Orders<a class="headerlink" href="#assignment-2-supervised-learning-techniques-for-e-commerce-orders" title="Permalink to this heading">#</a></h1>
-<p>This notebook is your working template for <strong>Assignment 2</strong>.</p>
-<p><strong>Total Marks: 30</strong></p>
-<p><strong>Learning Objectives:</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-2-supervised-learning-techniques-for-e-commerce-orders">
+<h1>Chapter 2: Supervised Learning Techniques for E-Commerce Orders<a class="headerlink" href="#chapter-2-supervised-learning-techniques-for-e-commerce-orders" title="Permalink to this heading">#</a></h1>
+<section id="we-will">
+<h2>We will:<a class="headerlink" href="#we-will" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Apply essential data preprocessing techniques to a dataset for supervised learning</p></li>
+<li><p>Continue working with the expanded dataset from chapter 1</p></li>
+<li><p>Apply essential data preprocessing techniques to this dataset for supervised learning</p></li>
 <li><p>Prepare the data for classification modeling</p></li>
 <li><p>Apply supervised learning techniques to build and evaluate classification models</p></li>
 </ul>
-<p><strong>Your Objective:</strong>
-Build supervised classification models to predict the <strong>payment method (<code class="docutils literal notranslate"><span class="pre">payment_type</span></code>)</strong> used for each order, based on order characteristics and order attributes.</p>
-<p>Work <strong>top-to-bottom</strong>. Complete each task in order before moving on.</p>
+</section>
+<section id="objective">
+<h2>Objective:<a class="headerlink" href="#objective" title="Permalink to this heading">#</a></h2>
+<p>Understanding customer payment preferences is essential for optimizing the checkout experience. By identifying which payment methods customers are more likely to use, the business can reduction friction during checkout and design incentives to encourage the adoption of specific payment methods.</p>
+<p>In this part, we will build supervised classification models to predict the <strong>payment method (<code class="docutils literal notranslate"><span class="pre">payment_type</span></code>)</strong> used for each order, based on order characteristics and order attributes.</p>
+</section>
 <section id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
 <p>Run the cell below to import the required Python packages.</p>
@@ -401,11 +406,12 @@ Build supervised classification models to predict the <strong>payment method (<c
 </section>
 <section id="define-global-random-state">
 <h2>Define Global Random State<a class="headerlink" href="#define-global-random-state" title="Permalink to this heading">#</a></h2>
-<p>Set your group’s random state value. This must be used consistently throughout the assignment.</p>
+<p>Many steps in this part involve randomness (e.g. data splitting and model training).</p>
+<p>We define a <code class="docutils literal notranslate"><span class="pre">RANDOMSTATE</span></code> value and reuse it throughout to ensure the same inputs produce the same outputs. This makes our comparisons fair and repeatable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Set RANDOM_STATE to your group number (1, 2, ..., 12)</span>
-<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">9</span>  <span class="c1"># Change this to your group number</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set a fixed random state to ensure reproducibility across all random processes</span>
+<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">9</span>  <span class="c1"># Randomly selected for reproducibility</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Random state set to: </span><span class="si">{</span><span class="n">RANDOM_STATE</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -420,19 +426,19 @@ Build supervised classification models to predict the <strong>payment method (<c
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="part-1-data-preparation-10-marks">
-<h1>Part 1: Data Preparation [10 Marks]<a class="headerlink" href="#part-1-data-preparation-10-marks" title="Permalink to this heading">#</a></h1>
-<p>In this section, you will prepare the transformed dataset for supervised classification. Proper data preparation is a critical step in the machine learning pipeline, as model performance and validity depend heavily on the quality, structure, and representation of the input data.</p>
-<section id="data-loading-and-splitting-2-marks">
-<h2>1.1 Data Loading and Splitting [2 Marks]<a class="headerlink" href="#data-loading-and-splitting-2-marks" title="Permalink to this heading">#</a></h2>
-<p>Load the dataset using Pandas and prepare train/test datasets.</p>
-<p><strong>Instructions:</strong></p>
+<section class="tex2jax_ignore mathjax_ignore" id="part-1-data-preparation">
+<h1>Part 1: Data Preparation<a class="headerlink" href="#part-1-data-preparation" title="Permalink to this heading">#</a></h1>
+<p>In this section, we will prepare the transformed dataset for supervised classification. Proper data preparation is a critical step in the machine learning pipeline, as model performance and validity depend heavily on the quality, structure, and representation of the input data.</p>
+<section id="data-loading-and-splitting">
+<h2>1.1 Data Loading and Splitting<a class="headerlink" href="#data-loading-and-splitting" title="Permalink to this heading">#</a></h2>
+<p>We will load the dataset using Pandas and prepare our training and test datasets.</p>
+<p><strong>Our processes:</strong></p>
 <ol class="arabic simple">
-<li><p>Load the processed dataset from Assignment 1 using <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code></p></li>
+<li><p>Load the processed dataset from Chapter 1 using <code class="docutils literal notranslate"><span class="pre">pd.read_csv()</span></code></p></li>
 <li><p>Define features and target:</p>
 <ul class="simple">
 <li><p>Set <code class="docutils literal notranslate"><span class="pre">payment_type</span></code> as the target variable</p></li>
-<li><p>Set all remaining columns as input features</p></li>
+<li><p>Set all remaining columns as input features, excluding <code class="docutils literal notranslate"><span class="pre">order_id</span></code> as it is a unique identifier with no predictive value</p></li>
 </ul>
 </li>
 <li><p>Split the dataset into training and test sets:</p>
@@ -440,17 +446,15 @@ Build supervised classification models to predict the <strong>payment method (<c
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">train_test_split()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_size</span> <span class="pre">=</span> <span class="pre">0.2</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">random_state</span> <span class="pre">=</span> <span class="pre">RANDOM_STATE</span></code></p></li>
-<li><p>Name output variables as: <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code></p></li>
+<li><p>The resulting variables will be named as: <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">X_test</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_test</span></code></p></li>
 </ul>
 </li>
-<li><p>Briefly explain the importance of using a test dataset.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the processed dataset from Assignment 1</span>
-<span class="c1"># TODO: Adjust the filename/path if needed</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the processed dataset from Chapter 1</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/ecommerce_orders_cleaned.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;ecommerce_orders_cleaned.csv&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
@@ -604,13 +608,13 @@ Build supervised classification models to predict the <strong>payment method (<c
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Define features and target, then split the data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define features and target, then split the data</span>
 
 <span class="c1"># Define target variable</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;payment_type&#39;</span><span class="p">]</span>
 
-<span class="c1"># Define features (all columns except payment_type)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;payment_type&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Define features (all columns except payment_type and order_id)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;payment_type&#39;</span><span class="p">,</span> <span class="s1">&#39;order_id&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Split into train and test sets</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
@@ -624,40 +628,35 @@ Build supervised classification models to predict the <strong>payment method (<c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train shape: (37029, 16)
-X_test shape: (9258, 16)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train shape: (37029, 15)
+X_test shape: (9258, 15)
 y_train shape: (37029,)
 y_test shape: (9258,)
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>TODO: Briefly explain the importance of using a test dataset.</strong></p>
-<p><em>To evaluate the preformance of model on unseen dataset, and help to avoid overfit.</em></p>
+<p><strong>Why a test dataset is important</strong>:</p>
+<p>A test dataset is critical because it simulates a production deployment. It is essential for evaluating the preformance of model on unseen data and helps to avoid overfitting.</p>
 </section>
-<section id="handling-categorical-variables-4-marks">
-<h2>1.2 Handling Categorical Variables [4 Marks]<a class="headerlink" href="#handling-categorical-variables-4-marks" title="Permalink to this heading">#</a></h2>
-<p>Prepare categorical variables for machine learning.</p>
-<p><strong>Instructions:</strong></p>
+<section id="handling-categorical-variables">
+<h2>1.2 Handling Categorical Variables<a class="headerlink" href="#handling-categorical-variables" title="Permalink to this heading">#</a></h2>
+<p>Next, we prepare categorical variables for machine learning.</p>
+<p><strong>Our Process:</strong></p>
 <ol class="arabic simple">
-<li><p>Identify all categorical columns</p></li>
-<li><p>Apply label encoding:</p>
-<ul class="simple">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> from scikit-learn</p></li>
-</ul>
-</li>
+<li><p>Identify all categorical columns in the training data.</p></li>
+<li><p>Apply label encoding using <code class="docutils literal notranslate"><span class="pre">LabelEncoder</span></code> from scikit-learn.</p></li>
 <li><p>Ensure consistency across train and test sets:</p>
 <ul class="simple">
-<li><p>Fit encoders on training data only</p></li>
-<li><p>Transform both train and test sets</p></li>
-<li><p>Handle any unseen categories appropriately</p></li>
+<li><p>Fit encoders on training data only.</p></li>
+<li><p>Transform both training and test sets.</p></li>
+<li><p>Handle any unseen categories in the test set appropriately.</p></li>
 </ul>
 </li>
-<li><p>Briefly explain why categorical encoding is required for machine learning models</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Identify categorical columns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identify all categorical columns</span>
 
 <span class="n">categorical_cols</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="s1">&#39;category&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Categorical columns: </span><span class="si">{</span><span class="n">categorical_cols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -665,14 +664,14 @@ y_test shape: (9258,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Categorical columns: [&#39;order_id&#39;, &#39;order_status&#39;, &#39;top_product_category&#39;, &#39;customer_state&#39;, &#39;order_size_category&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Categorical columns: [&#39;order_status&#39;, &#39;top_product_category&#39;, &#39;customer_state&#39;, &#39;order_size_category&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Apply Label Encoding to categorical columns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply Label Encoding to categorical columns</span>
 
 <span class="c1"># Create copies to avoid modifying original data</span>
 <span class="n">X_train_encoded</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -710,29 +709,28 @@ y_test shape: (9258,)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train_encoded shape: (37029, 16)
-X_test_encoded shape: (9258, 16)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train_encoded shape: (37029, 15)
+X_test_encoded shape: (9258, 15)
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>TODO: Briefly explain why categorical encoding is required for machine learning models.</strong></p>
-<p><em>Categorical encoding convert categorical variables into numerical representations, so that machine learning algorithms can process and handle them effectively.</em></p>
+<p><strong>Why categorical encoding is required:</strong></p>
+<p><em>Categorical encoding converts categorical variables into numerical representations, so that machine learning algorithms can process and handle them effectively.</em></p>
 </section>
-<section id="handling-numerical-variables-4-marks">
-<h2>1.3 Handling Numerical Variables [4 Marks]<a class="headerlink" href="#handling-numerical-variables-4-marks" title="Permalink to this heading">#</a></h2>
-<p>Scale numerical variables for modeling.</p>
-<p><strong>Instructions:</strong></p>
+<section id="handling-numerical-variables">
+<h2>1.3 Handling Numerical Variables<a class="headerlink" href="#handling-numerical-variables" title="Permalink to this heading">#</a></h2>
+<p>Finally, we scale our numerical variables.</p>
+<p><strong>Our Process:</strong></p>
 <ol class="arabic simple">
-<li><p>Identify all numerical columns</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> from scikit-learn for feature scaling</p></li>
-<li><p><strong>Fit the scaler on X_train only</strong></p></li>
+<li><p>Identify all numerical columns.</p></li>
+<li><p>Apply feature scaling using <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> from scikit-learn</p></li>
+<li><p>Fit the scaler on X_train only</p></li>
 <li><p>Transform both X_train and X_test</p></li>
-<li><p>Briefly explain why feature scaling is important for some classification models</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Identify numerical columns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identify numerical columns</span>
 
 <span class="n">numerical_cols</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Numerical columns: </span><span class="si">{</span><span class="n">numerical_cols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -747,13 +745,15 @@ X_test_encoded shape: (9258, 16)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Apply StandardScaler to numerical columns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply StandardScaler to numerical columns</span>
 
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 
 <span class="c1"># Fit on training data only, then transform both train and test</span>
-<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">])</span>
-<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">])</span>
+<span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">X_train_encoded</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">X_test_encoded</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X_train_scaled</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">])</span>
+<span class="n">X_test_scaled</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test_encoded</span><span class="p">[</span><span class="n">numerical_cols</span><span class="p">])</span>
 
 <span class="c1"># Print the shape after scaling</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X_train_scaled shape: </span><span class="si">{</span><span class="n">X_train_scaled</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -762,35 +762,35 @@ X_test_encoded shape: (9258, 16)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train_scaled shape: (37029, 11)
-X_test_scaled shape: (9258, 11)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_train_scaled shape: (37029, 15)
+X_test_scaled shape: (9258, 15)
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>TODO: Briefly explain why feature scaling is important for some classification models.</strong></p>
-<p><em>Feature scaling can prevent features with large values or range from dominating the model’s prediction, and also improve the traing time and performance of the model.</em></p>
+<p><strong>Why feature scaling is important:</strong></p>
+<p><em>Feature scaling can prevent features with large values or ranges from dominating the model’s prediction, and also improve the traing time and performance of many models.</em></p>
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="part-2-applying-machine-learning-models-20-marks">
-<h1>Part 2: Applying Machine Learning Models [20 Marks]<a class="headerlink" href="#part-2-applying-machine-learning-models-20-marks" title="Permalink to this heading">#</a></h1>
-<p>In this section, you will train, evaluate, and compare multiple supervised classification models for predicting the payment method (<code class="docutils literal notranslate"><span class="pre">payment_type</span></code>). The objective is not only to build individual models, but also to perform a systematic comparison of their predictive performance and practical suitability for deployment.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="part-2-applying-machine-learning-models">
+<h1>Part 2: Applying Machine Learning Models<a class="headerlink" href="#part-2-applying-machine-learning-models" title="Permalink to this heading">#</a></h1>
+<p>In this section, we will train, evaluate, and compare multiple supervised classification models for predicting the payment method (<code class="docutils literal notranslate"><span class="pre">payment_type</span></code>). Our objective is not only to build individual models, but also to perform a systematic comparison of their predictive performance and practical suitability for deployment.</p>
 <section id="model-training">
 <h2>2.1 Model Training<a class="headerlink" href="#model-training" title="Permalink to this heading">#</a></h2>
-<section id="logistic-regression-3-marks">
-<h3>2.1.1 Logistic Regression [3 Marks]<a class="headerlink" href="#logistic-regression-3-marks" title="Permalink to this heading">#</a></h3>
+<section id="logistic-regression">
+<h3>2.1.1 Logistic Regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h3>
 <p>Logistic Regression is a linear classification model that models the log-odds of the target class as a linear combination of the input features.</p>
-<p><strong>Instructions:</strong></p>
+<p><strong>Our Process:</strong></p>
 <ul class="simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">LogisticRegression()</span></code></p></li>
-<li><p>Train on <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p></li>
-<li><p>Generate predictions on <code class="docutils literal notranslate"><span class="pre">X_test</span></code></p></li>
+<li><p>Train the model on <code class="docutils literal notranslate"><span class="pre">X_train_scaled</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p></li>
+<li><p>Generate predictions on <code class="docutils literal notranslate"><span class="pre">X_test_scaled</span></code></p></li>
 <li><p>Store the results in <code class="docutils literal notranslate"><span class="pre">y_pred_lr</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Train Logistic Regression model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Logistic Regression model</span>
 
 <span class="n">lr_model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">lr_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -809,19 +809,19 @@ X_test_scaled shape: (9258, 11)
 </div>
 </div>
 </section>
-<section id="decision-trees-3-marks">
-<h3>2.1.2 Decision Trees [3 Marks]<a class="headerlink" href="#decision-trees-3-marks" title="Permalink to this heading">#</a></h3>
-<p>Decision Trees is a tree-structured model that makes predictions by recursively splitting the feature space based on feature values.</p>
-<p><strong>Instructions:</strong></p>
+<section id="decision-trees">
+<h3>2.1.2 Decision Trees<a class="headerlink" href="#decision-trees" title="Permalink to this heading">#</a></h3>
+<p>Decision Tree is a tree-structured model that makes predictions by recursively splitting the feature space based on feature values.</p>
+<p><strong>Our Process:</strong></p>
 <ul class="simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier()</span></code></p></li>
-<li><p>Train on <code class="docutils literal notranslate"><span class="pre">X_train</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p></li>
-<li><p>Generate predictions on <code class="docutils literal notranslate"><span class="pre">X_test</span></code></p></li>
+<li><p>Train on <code class="docutils literal notranslate"><span class="pre">X_train_scaled</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p></li>
+<li><p>Generate predictions on <code class="docutils literal notranslate"><span class="pre">X_test_scaled</span></code></p></li>
 <li><p>Store the results in <code class="docutils literal notranslate"><span class="pre">y_pred_dt</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Train Decision Tree model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Decision Tree model</span>
 
 <span class="n">dt_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
 <span class="n">dt_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
@@ -840,59 +840,20 @@ X_test_scaled shape: (9258, 11)
 </div>
 </div>
 </section>
-<section id="kernel-ensemble-methods-3-marks">
-<h3>2.1.3 Kernel &amp; Ensemble Methods [3 Marks]<a class="headerlink" href="#kernel-ensemble-methods-3-marks" title="Permalink to this heading">#</a></h3>
-<p>There are other types of models beyond linear and single-tree approaches, each with distinct characteristics.</p>
-<p><strong>Choose one of the following models to apply:</strong> SVM, XGBoost, or Random Forest.</p>
-<p><strong>Instructions:</strong></p>
+<section id="random-forest">
+<h3>2.1.3 Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h3>
+<p>Random Forest is an ensemble learning model that builds multiple decision trees on different random subsets of the data and features. It makes predictions by aggregating the outputs of these trees.</p>
+<p><strong>Our Process:</strong></p>
 <ul class="simple">
-<li><p>Fit and predict the results with your selected model</p></li>
-<li><p>Store the predictions appropriately</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">DecisionTreeClassifier()</span></code></p></li>
+<li><p>Train on <code class="docutils literal notranslate"><span class="pre">X_train_scaled</span></code>, <code class="docutils literal notranslate"><span class="pre">y_train</span></code></p></li>
+<li><p>Generate predictions on <code class="docutils literal notranslate"><span class="pre">X_test_scaled</span></code></p></li>
+<li><p>Store the results in <code class="docutils literal notranslate"><span class="pre">y_pred_dt</span></code></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Train your chosen model (SVM, XGBoost, or Random Forest)</span>
-<span class="c1"># SVM</span>
-<span class="n">svm_model</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
-<span class="n">svm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Train Random Forest</span>
 
-<span class="c1"># Generate predictions</span>
-<span class="n">y_pred_svm</span> <span class="o">=</span> <span class="n">svm_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SVM training complete.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Train your chosen model (SVM, XGBoost, or Random Forest)</span>
-<span class="c1"># XGBoost</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="kn">import</span> <span class="n">XGBClassifier</span>
-<span class="n">le_y</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
-<span class="n">y_train_encoded</span> <span class="o">=</span> <span class="n">le_y</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
-<span class="n">y_test_encoded</span> <span class="o">=</span> <span class="n">le_y</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
-
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
-<span class="n">xgb_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train_encoded</span><span class="p">)</span>
-
-<span class="c1"># Generate predictions</span>
-<span class="n">y_pred_xgb</span> <span class="o">=</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_scaled</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;XGBoost training complete.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>XGBoost training complete.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Train your chosen model (SVM, XGBoost, or Random Forest)</span>
-<span class="c1"># Random Forest</span>
 <span class="n">rf_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
 <span class="n">rf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_scaled</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
@@ -911,40 +872,34 @@ X_test_scaled shape: (9258, 11)
 </div>
 </section>
 </section>
-<section id="evaluation-visualization-4-marks">
-<h2>2.2 Evaluation &amp; Visualization [4 Marks]<a class="headerlink" href="#evaluation-visualization-4-marks" title="Permalink to this heading">#</a></h2>
-<p>Evaluate and visualize performance for all three models.</p>
-<p><strong>Instructions:</strong></p>
+<section id="evaluation-visualization">
+<h2>2.2 Evaluation &amp; Visualization<a class="headerlink" href="#evaluation-visualization" title="Permalink to this heading">#</a></h2>
+<p>In this section, we evaluate and compare the performance of our three trained models.</p>
+<p><strong>Evaluation Metrics:</strong></p>
+<p>To assess each model, we rely on the following standard classification metrics:</p>
 <ol class="arabic simple">
-<li><p>Compute the following metrics:</p>
+<li><p><strong>Accuray</strong>: Percentage of correct predictions (simple, but misleading for imbalanced classes)</p></li>
+<li><p><strong>Precision</strong>: Percentage of predicted payment types that are correct (matters for targeted promotions)</p></li>
+<li><p><strong>Recall</strong>: Percentage of actual payment types successfully identified (matters for minority classes)</p></li>
+<li><p><strong>F1-Score</strong>: Harmonic mean of precision and recall (best single metric for imbalanced data)</p></li>
+</ol>
+<p><strong>Confusion Matrix</strong>:</p>
+<p>The confusion matrix helps us visualize where a model succeeds and fails:</p>
 <ul class="simple">
-<li><p>Accuracy</p></li>
-<li><p>Precision</p></li>
-<li><p>Recall</p></li>
-<li><p>F1-score</p></li>
+<li><p>Diagonal: Correct predicitions</p></li>
+<li><p>Off-diagonal: Errors</p></li>
 </ul>
-</li>
-<li><p>Compute the confusion matrix for each case:</p>
-<ul class="simple">
-<li><p>Visualize the confusion matrix by plotting a heatmap using Seaborn</p></li>
-</ul>
-</li>
-<li><p>Present results in a clear, comparable format:</p>
-<ul class="simple">
-<li><p>Table of metrics for all three models</p></li>
-<li><p>Side-by-side or clearly labelled confusion matrix plots</p></li>
-</ul>
-</li>
-<li><p>Briefly comment on:</p>
-<ul class="simple">
-<li><p>Strengths and weaknesses of each model</p></li>
-<li><p>Any impact of class imbalance handling</p></li>
-</ul>
-</li>
+<p><strong>Our Analysis Plan:</strong></p>
+<p>To conduct a thorough evaluation, we will:</p>
+<ol class="arabic simple">
+<li><p>Compute Accuracy, Precision, Recall, and F1-score for each model.</p></li>
+<li><p>Generate and visualize the confusion matrix for each model using Seaborn heatmaps.</p></li>
+<li><p>Present all results in a clear, comparable format, including a summary table of metrics and side-by-side confusion matrix plots.</p></li>
+<li><p>Conclude with a brif comment on the strengths and weaknesses of each model and the observed impact of class imbalance on their performance.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Compute evaluation metrics for all three models</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute evaluation metrics for all three models</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_model</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
     <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
@@ -964,7 +919,7 @@ X_test_scaled shape: (9258, 11)
 <span class="n">results</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">evaluate_model</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_lr</span><span class="p">,</span> <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">),</span>
     <span class="n">evaluate_model</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">,</span> <span class="s1">&#39;Decision Tree&#39;</span><span class="p">),</span>
-    <span class="n">evaluate_model</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf</span><span class="p">,</span> <span class="s1">&#39;Random Forest&#39;</span><span class="p">)</span>  <span class="c1"># or your chosen model</span>
+    <span class="n">evaluate_model</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf</span><span class="p">,</span> <span class="s1">&#39;Random Forest&#39;</span><span class="p">)</span>
 <span class="p">]</span>
 
 <span class="c1"># Create results DataFrame</span>
@@ -974,9 +929,7 @@ X_test_scaled shape: (9258, 11)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-b2b8434f-5ceb-4d9d-a55f-54d5ebee490f" class="colab-df-container">
-    <div>
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
@@ -1005,172 +958,34 @@ X_test_scaled shape: (9258, 11)
     <tr>
       <th>0</th>
       <td>Logistic Regression</td>
-      <td>0.615360</td>
-      <td>0.568235</td>
-      <td>0.615360</td>
-      <td>0.491462</td>
+      <td>0.616656</td>
+      <td>0.572691</td>
+      <td>0.616656</td>
+      <td>0.493751</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Decision Tree</td>
-      <td>0.505725</td>
-      <td>0.512395</td>
-      <td>0.505725</td>
-      <td>0.508834</td>
+      <td>0.493843</td>
+      <td>0.506346</td>
+      <td>0.493843</td>
+      <td>0.499534</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Random Forest</td>
-      <td>0.620868</td>
-      <td>0.609298</td>
-      <td>0.620868</td>
-      <td>0.568990</td>
+      <td>0.627349</td>
+      <td>0.576242</td>
+      <td>0.627349</td>
+      <td>0.572038</td>
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-b2b8434f-5ceb-4d9d-a55f-54d5ebee490f')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-b2b8434f-5ceb-4d9d-a55f-54d5ebee490f button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-b2b8434f-5ceb-4d9d-a55f-54d5ebee490f');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-  </div>
-
-
-  <div id="id_e0cbd970-bdb8-4f97-ad36-d8a9dbe8738e">
-    <style>
-      .colab-df-generate {
-        background-color: #E8F0FE;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        fill: #1967D2;
-        height: 32px;
-        padding: 0 0 0 0;
-        width: 32px;
-      }
-
-      .colab-df-generate:hover {
-        background-color: #E2EBFA;
-        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-        fill: #174EA6;
-      }
-
-      [theme=dark] .colab-df-generate {
-        background-color: #3B4455;
-        fill: #D2E3FC;
-      }
-
-      [theme=dark] .colab-df-generate:hover {
-        background-color: #434B5C;
-        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-        fill: #FFFFFF;
-      }
-    </style>
-    <button class="colab-df-generate" onclick="generateWithVariable('results_df')"
-            title="Generate code using this dataframe."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
-  </svg>
-    </button>
-    <script>
-      (() => {
-      const buttonEl =
-        document.querySelector('#id_e0cbd970-bdb8-4f97-ad36-d8a9dbe8738e button.colab-df-generate');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      buttonEl.onclick = () => {
-        google.colab.notebook.generateWithVariable('results_df');
-      }
-      })();
-    </script>
-  </div>
-
-    </div>
-  </div>
-</div></div>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Plot confusion matrices for all three models</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot confusion matrices for all three models</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
@@ -1183,7 +998,7 @@ X_test_scaled shape: (9258, 11)
 
 <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_lr</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;Logistic Regression&#39;</span><span class="p">)</span>
 <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_dt</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Decision Tree&#39;</span><span class="p">)</span>
-<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;Random Forest&#39;</span><span class="p">)</span>  <span class="c1"># or your chosen model</span>
+<span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf</span><span class="p">,</span> <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;Random Forest&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1191,25 +1006,23 @@ X_test_scaled shape: (9258, 11)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1ede5f51da85c94faf16daae9b5583be84609dba8c4e5e1717975eb34de995c2.png" src="_images/1ede5f51da85c94faf16daae9b5583be84609dba8c4e5e1717975eb34de995c2.png" />
+<img alt="_images/418096c78a958b31318f16365973d20184d71c87355f0c2e3108b8dabafb4343.png" src="_images/418096c78a958b31318f16365973d20184d71c87355f0c2e3108b8dabafb4343.png" />
 </div>
 </div>
-<p><strong>TODO: Briefly comment on the strengths and weaknesses of each model, and any impact of class imbalance handling.</strong></p>
-<p><em>Logistic Regression: Achieves a relatively high overall Accuracy (0.615) and is computationally fast. However, as a linear model, it failed to capture the minority classes.</em></p>
-<p><em>Decision Tree: Better at capturing non-linear relationships. The confusion matrix shows it actually attempts to predict minority classes However, it makes many misclassifications across all classes, resulting in the lowest overall Accuracy (0.505).</em></p>
-<p><em>Random Forest: The best overall performer, achieving the highest Accuracy (0.621) and F1-Score (0.569). However, the computations took longer time and it still struggles with the minority classes.</em></p>
-<ul class="simple">
-<li><p><strong>Impact of Class Imbalance Handling</strong>
-No explicit class imbalance handling was applied, and all models exhibit a strong bias toward the majority class to minimize overall error.</p></li>
-</ul>
+<p><strong>Briefly comment on the strengths and weaknesses of each model:</strong></p>
+<p><strong>Logistic Regression</strong>: Achieves a relatively high overall Accuracy (0.617) and is computationally fast. However, as a linear model, it failed to capture the minority classes.</p>
+<p><strong>Decision Tree</strong>: Better at capturing non-linear relationships. The confusion matrix shows it actually attempts to predict minority classes However, it makes many misclassifications across all classes, resulting in the lowest overall Accuracy (0.493).</p>
+<p><strong>Random Forest</strong>: The best overall performer, achieving the highest Accuracy (0.627) and F1-Score (0.572). However, the computations took longer time and it still struggles with the minority classes.</p>
+<p><strong>Impact of Class Imbalance Handling:</strong></p>
+<p>No explicit class imbalance handling was applied, and all models exhibit a strong bias toward the majority class to minimize overall error.</p>
 </section>
-<section id="model-selection-final-recommendation-7-marks">
-<h2>2.3 Model Selection &amp; Final Recommendation [7 Marks]<a class="headerlink" href="#model-selection-final-recommendation-7-marks" title="Permalink to this heading">#</a></h2>
-<p>Compare the performance of the models and select the most suitable one based on evaluation results.</p>
-<p><strong>Instructions:</strong></p>
+<section id="model-selection-final-recommendation">
+<h2>2.3 Model Selection &amp; Final Recommendation<a class="headerlink" href="#model-selection-final-recommendation" title="Permalink to this heading">#</a></h2>
+<p>Now we compare the performance of the models and select the most suitable one based on evaluation results.</p>
+<p><strong>Our Process:</strong></p>
 <ol class="arabic simple">
 <li><p>Select the best performing model for predicting <code class="docutils literal notranslate"><span class="pre">payment_type</span></code></p></li>
-<li><p>Justify your choice based on:</p>
+<li><p>Justify our choice based on:</p>
 <ul class="simple">
 <li><p>Evaluation metrics</p></li>
 <li><p>Class imbalance considerations</p></li>
@@ -1222,13 +1035,13 @@ No explicit class imbalance handling was applied, and all models exhibit a stron
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO: Display final comparison and analysis</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display final comparison and analysis</span>
 
 <span class="c1"># Display the results table</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Performance Comparison:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results_df</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="c1"># Identify the best model based on your criteria</span>
+<span class="c1"># Identify the best model based on F1-Score</span>
 <span class="n">best_model</span> <span class="o">=</span> <span class="n">results_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;F1-Score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(),</span> <span class="s1">&#39;Model&#39;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Best performing model: </span><span class="si">{</span><span class="n">best_model</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1237,66 +1050,68 @@ No explicit class imbalance handling was applied, and all models exhibit a stron
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model Performance Comparison:
               Model  Accuracy  Precision   Recall  F1-Score
-Logistic Regression  0.615360   0.568235 0.615360  0.491462
-      Decision Tree  0.505725   0.512395 0.505725  0.508834
-      Random Forest  0.620868   0.609298 0.620868  0.568990
+Logistic Regression  0.616656   0.572691 0.616656  0.493751
+      Decision Tree  0.493843   0.506346 0.493843  0.499534
+      Random Forest  0.627349   0.576242 0.627349  0.572038
 
 Best performing model: Random Forest
 </pre></div>
 </div>
 </div>
 </div>
-<section id="final-recommendation">
-<h3>Final Recommendation<a class="headerlink" href="#final-recommendation" title="Permalink to this heading">#</a></h3>
-<p><strong>TODO: Select and justify your choice of the best model.</strong></p>
-<p><strong>Selected Model:</strong> <em>[Your choice here]</em></p>
+<section id="final-model-recommendation">
+<h3>Final Model Recommendation<a class="headerlink" href="#final-model-recommendation" title="Permalink to this heading">#</a></h3>
+<p><strong>Selected Model: Random Forest</strong></p>
 <p><strong>Justification based on:</strong></p>
 <ol class="arabic simple">
 <li><p><strong>Evaluation Metrics:</strong></p>
 <ul class="simple">
-<li><p><em>Your analysis here…</em></p></li>
+<li><p><em>Random Forest outperformed all models, achieving the highest accuracy (0.627) and F1-score (0.572), which surpassed Logistic Regression (0.617) and significantly outperformed Decision Tree (0.494).</em></p></li>
 </ul>
 </li>
 <li><p><strong>Class Imbalance Considerations:</strong></p>
 <ul class="simple">
-<li><p><em>Your analysis here…</em></p></li>
+<li><p><em>Although the dataset is imbalanced (mostly Class 0), Random Forest was the only model that correctly classified a reasonable number of minority class instances (Class 2, 3), while Logistic Regression ignored Class 1 entirely and nearly ignored Class 2 to maximize overall accuracy.</em></p></li>
 </ul>
 </li>
 <li><p><strong>Model Complexity and Interpretability:</strong></p>
 <ul class="simple">
-<li><p><em>Your analysis here…</em></p></li>
+<li><p><em>While less interpretable than single Decision Tree or Logistic Regression for its ensemble structure, Random Forest provides a good trade-off by reducing overfitting and variance, showing better generalization on the test set than the single Decision Tree.</em></p></li>
 </ul>
 </li>
 <li><p><strong>Practical Deployment Considerations:</strong></p>
 <ul class="simple">
-<li><p><em>Your analysis here…</em></p></li>
+<li><p><em>Random Forest is robust and needs less feature scaling than other models, ensuring reliability in production. However, it is computationally more costly in training and prediction than Logistic Regression. For real-time applications with strict latency constraints, model compression or simpler models can be considered if the accuracy loss is acceptable.</em></p></li>
 </ul>
 </li>
 </ol>
-<p><strong>Why this model is preferred over others:</strong>
-<em>Your explanation here…</em></p>
+<p><strong>Why this model is preferred over others:</strong></p>
+<ul class="simple">
+<li><p>Random Forest is preferred for its balanced, accurate predictions. Unlike Logistic Regression, it captures nonlinear relationships; unlike a  single Decision Tree, it handles high-dimensional categorical data without serious overfitting.</p></li>
+</ul>
 </section>
 <section id="model-explainability-interpretability">
 <h3>Model Explainability/Interpretability<a class="headerlink" href="#model-explainability-interpretability" title="Permalink to this heading">#</a></h3>
-<p><strong>TODO: Comment on the explainability/interpretability of each model.</strong></p>
 <p><strong>Logistic Regression:</strong></p>
 <ul class="simple">
-<li><p><em>Your comments here…</em></p></li>
+<li><p><em>Highly interpretable; model coefficients directly show the direction and magnitude of each feature’s effect on the probability of a specific payment type.</em></p></li>
 </ul>
 <p><strong>Decision Tree:</strong></p>
 <ul class="simple">
-<li><p><em>Your comments here…</em></p></li>
+<li><p><em>Very easy to visualize and explain to non-technical stakeholders as a set of “if-then” rules. However, deep trees can become complex and hard to interpret holistically.</em></p></li>
 </ul>
-<p><strong>[Your Third Model]:</strong></p>
+<p><strong>Random Forest:</strong></p>
 <ul class="simple">
-<li><p><em>Your comments here…</em></p></li>
+<li><p><em>Less interpretable as a black-box ensemble model. However, it provides feature importance scores to identify key predictors, even if individual decision paths are not traceable.</em></p></li>
 </ul>
 </section>
 </section>
 <hr class="docutils" />
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
-<p><em>Summarize your findings and key takeaways from this assignment.</em></p>
+<p><strong>1. Model Performance</strong>：Random Forest was the most robust and accurate model (Accuracy: 0.627, F1-score: 0.572). Its ensemble structure captured complex nonlinear relationships in e-commerce data better than Decision Tree and Logistic Regression.</p>
+<p><strong>2. Class Imbalance</strong>：All models were biased toward the majority class and performed poorly on minority classes. For highly imbalanced data, standard algorithms need imbalance correction methods such as SMOTE and class weights to improve reliability.</p>
+<p><strong>3. Trade-off Between Complexity and Interpretability</strong>: A clear trade-off exists between predictive performance and interpretability. Logistic Regression is highly interpretable, while Random Forest achieves better accuracy as a black-box model.</p>
 </section>
 </section>
 
@@ -1364,27 +1179,29 @@ Best performing model: Random Forest
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Assignment 2: Supervised Learning Techniques for E-Commerce Orders</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Chapter 2: Supervised Learning Techniques for E-Commerce Orders</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#we-will">We will:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-global-random-state">Define Global Random State</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preparation-10-marks">Part 1: Data Preparation [10 Marks]</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-and-splitting-2-marks">1.1 Data Loading and Splitting [2 Marks]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-categorical-variables-4-marks">1.2 Handling Categorical Variables [4 Marks]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-numerical-variables-4-marks">1.3 Handling Numerical Variables [4 Marks]</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-data-preparation">Part 1: Data Preparation</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-and-splitting">1.1 Data Loading and Splitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-categorical-variables">1.2 Handling Categorical Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-numerical-variables">1.3 Handling Numerical Variables</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-applying-machine-learning-models-20-marks">Part 2: Applying Machine Learning Models [20 Marks]</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-applying-machine-learning-models">Part 2: Applying Machine Learning Models</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-training">2.1 Model Training</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression-3-marks">2.1.1 Logistic Regression [3 Marks]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees-3-marks">2.1.2 Decision Trees [3 Marks]</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-ensemble-methods-3-marks">2.1.3 Kernel &amp; Ensemble Methods [3 Marks]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">2.1.1 Logistic Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-trees">2.1.2 Decision Trees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">2.1.3 Random Forest</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-visualization-4-marks">2.2 Evaluation &amp; Visualization [4 Marks]</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection-final-recommendation-7-marks">2.3 Model Selection &amp; Final Recommendation [7 Marks]</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-recommendation">Final Recommendation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-visualization">2.2 Evaluation &amp; Visualization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection-final-recommendation">2.3 Model Selection &amp; Final Recommendation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-model-recommendation">Final Model Recommendation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-explainability-interpretability">Model Explainability/Interpretability</a></li>
 </ul>
 </li>
